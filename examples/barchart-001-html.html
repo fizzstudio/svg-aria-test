@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML chart</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      padding: 20px;
+    }
+
+    /* Bar Graph Horizontal */
+    #bar-chart-001 {
+      display: block;
+      max-width: 500px;
+    }
+
+    /* #bar-chart-001::after {
+      content: "";
+      clear: both;
+    } */
+
+    #bar-chart-001 > div {
+      float: left;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+
+    #bar-chart-001 .year {
+      float: left;
+      margin-top: 18px;
+      width: 50px;
+    }
+
+    #bar-chart-001 .bar {
+      border-radius: 3px;
+      height: 55px;
+      float: left;
+      overflow: hidden;
+      position: relative;
+      width: 0;
+    }
+
+    #bar-chart-001 .bar::after {
+      color: #fff;
+      content: attr(data-percentage);
+      font-weight: 700;
+      position: absolute;
+      right: 16px;
+      top: 17px;
+    }
+
+    #bar-chart-001 #bar-one .bar {
+      background-color: #64b2d1;
+      width: 69.6%;
+    }
+
+    #bar-chart-001 #bar-two .bar {
+      background-color: #5292ac;
+      width: 71%;
+    }
+
+    #bar-chart-001 #bar-three .bar {
+      background-color: #407286;
+      width: 74.7%;
+    }
+
+    #bar-chart-001 #bar-four .bar {
+      background-color: #2e515f;
+      width: 76.8%;
+    }
+  </style>
+</head>
+<body>
+  <h1>HTML chart with null semantics</h1>
+  <p>This is an HTML file with an embedded SVG chart. The SVG block is next in DOM order, followed by an HTML paragraph.</p>
+
+  <section id="bar-chart-001" role="graphics-document">
+    <div id="bar-one">
+      <span class="year">2017</span>
+      <div class="bar" data-percentage="69.6%"></div>
+    </div>
+    <div id="bar-two">
+      <span class="year">2018</span>
+      <div class="bar" data-percentage="71%"></div>
+    </div>
+    <div id="bar-three">
+      <span class="year">2019</span>
+      <div class="bar" data-percentage="74.7%"></div>
+    </div>
+    <div id="bar-four">
+      <span class="year">2020</span>
+      <div class="bar" data-percentage="76.8%"></div>
+    </div>
+  </section>
+
+
+  <p>This is the HTML paragraph after the SVG content.</p>
+
+</body>
+</html>

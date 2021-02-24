@@ -1,0 +1,75 @@
+<svg id="bar-chart-001" xmlns="http://www.w3.org/2000/svg" 
+  width="100%" height="100%" viewBox="0 0 500 500"
+  role="graphics-document">
+  <title>Accessible SVG Chart</title>  
+
+  <rect class="bg" width="100%" height="100%" fill="navajowhite"/>
+
+  <style>
+
+    #bar-one [role-description=bar] {
+      fill: #64b2d1;
+    }
+
+    #bar-two [role-description=bar] {
+      fill: #5292ac;
+    }
+
+    #bar-three [role-description=bar] {
+      fill: #407286;
+    }
+
+    #bar-chart-001 #bar-four [role-description=bar] {
+      fill: #2e515f;
+    }
+
+  </style>
+
+  <g id="dataset">
+    <g id="bar-one" role="graphics-object" role-description="datapoint" aria-labelledby="year-2019" tabindex="0"
+      transform="translate(30,10)">
+      <text id="year-2017" class="year">2017</text>
+      <rect role="graphics-symbol" role-description="bar" aria-label="69.6%" tabindex="0"
+        width="69.6%" height="50"></rect>
+    </g>
+
+    <g id="bar-two" role="graphics-object" role-description="datapoint" aria-labelledby="year-2019" tabindex="0"
+      transform="translate(30,70)">
+      <text id="year-2018" class="year">2018</text>
+      <rect class="bar" role="graphics-symbol" role-description="bar" aria-label="71%" tabindex="0"
+        width="71%" height="50"></rect>
+    </g>
+
+    <g id="bar-three" role="graphics-object" role-description="datapoint" aria-labelledby="year-2019" tabindex="0"
+      transform="translate(30,130)">
+      <text id="year-2019" class="year">2019</text>
+      <rect class="bar" role="graphics-symbol" role-description="bar" aria-label="74.7%" tabindex="0"
+        width="74.7%" height="50"></rect>
+    </g>
+
+    <g id="bar-four" role="graphics-object" role-description="datapoint" aria-labelledby="year-2019" tabindex="0"
+      transform="translate(30,200)">
+      <text id="year-2020" class="year">2020</text>
+      <rect class="bar" role="graphics-symbol" role-description="bar" aria-label="76.8%" tabindex="0"
+        width="76.8%" height="50"></rect>
+    </g>
+
+
+    <g id="bar-two">
+      <title class="year">2018</title>
+      <rect class="bar" data-percentage="71%"></rect>
+    </g>
+    <g id="bar-three">
+      <title class="year">2017</title>
+      <rect class="bar" data-percentage="74.7%"></rect>
+    </g>
+    <g id="bar-four">
+      <title class="year">2019</title>
+      <rect class="bar" data-percentage="76.8%"></rect>
+    </g>
+
+  </g>
+
+
+
+</svg>
