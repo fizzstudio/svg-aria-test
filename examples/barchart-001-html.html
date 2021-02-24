@@ -15,10 +15,9 @@
       max-width: 500px;
     }
 
-    /* #bar-chart-001::after {
-      content: "";
+    h2, p {
       clear: both;
-    } */
+    }
 
     #bar-chart-001 > div {
       float: left;
@@ -75,45 +74,52 @@
   <h1>HTML chart with null semantics</h1>
   <p>This is an HTML file with an embedded SVG chart. The SVG block is next in DOM order, followed by an HTML paragraph.</p>
 
-  <h2>role="region"</h2>
-  <div id="bar-chart-001" role="region" role-description="bar chart">
-    <div id="bar-one">
-      <span class="year">2017</span>
-      <div class="bar" data-percentage="69.6%"></div>
+  <section>
+    <h2>role="region"</h2>
+    <div id="bar-chart-001" role="region">
+      <!-- role-description="bar chart"       -->
+      <div id="bar-one">
+        <span class="year">2017</span>
+        <div class="bar" data-percentage="69.6%"></div>
+      </div>
+      <div id="bar-two">
+        <span class="year">2018</span>
+        <div class="bar" data-percentage="71%"></div>
+      </div>
+      <div id="bar-three">
+        <span class="year">2019</span>
+        <div class="bar" data-percentage="74.7%"></div>
+      </div>
+      <div id="bar-four">
+        <span class="year">2020</span>
+        <div class="bar" data-percentage="76.8%"></div>
+      </div>
     </div>
-    <div id="bar-two">
-      <span class="year">2018</span>
-      <div class="bar" data-percentage="71%"></div>
-    </div>
-    <div id="bar-three">
-      <span class="year">2019</span>
-      <div class="bar" data-percentage="74.7%"></div>
-    </div>
-    <div id="bar-four">
-      <span class="year">2020</span>
-      <div class="bar" data-percentage="76.8%"></div>
-    </div>
-  </div>
+  </section>
 
-  <h2>role="graphics-document"</h2>
-  <div id="bar-chart-001" role="graphics-document" role-description="bar chart">
-    <div id="bar-one">
-      <span class="year">2017</span>
-      <div class="bar" data-percentage="69.6%"></div>
-    </div>
-    <div id="bar-two">
-      <span class="year">2018</span>
-      <div class="bar" data-percentage="71%"></div>
-    </div>
-    <div id="bar-three">
-      <span class="year">2019</span>
-      <div class="bar" data-percentage="74.7%"></div>
-    </div>
-    <div id="bar-four">
-      <span class="year">2020</span>
-      <div class="bar" data-percentage="76.8%"></div>
-    </div>
-  </div>
+  <section>
+    <h2>role="graphics-document"</h2>
+    <div id="bar-chart-001" role="graphics-document">
+      <!-- role-description="bar chart"       -->
+      <div id="bar-one">
+        <span class="year">2017</span>
+        <div class="bar" data-percentage="69.6%"></div>
+      </div>
+      <div id="bar-two">
+        <span class="year">2018</span>
+        <div class="bar" data-percentage="71%"></div>
+      </div>
+      <div id="bar-three">
+        <span class="year">2019</span>
+        <div class="bar" data-percentage="74.7%"></div>
+      </div>
+      <div id="bar-four">
+        <span class="year">2020</span>
+        <div class="bar" data-percentage="76.8%"></div>
+      </div>
+    </div>   
+  </section>
+
 
 
   <p>This is the HTML paragraph after the SVG content.</p>
