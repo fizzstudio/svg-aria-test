@@ -8,6 +8,11 @@ body {
   padding: 2em;
 }
 
+*:focus {
+  outline: 2px solid rebeccapurple;
+  outline-offset: 1px;
+}
+
 /* Support table styling */
 .support-table {
   max-width: 100%;
