@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SVG elements with aria-label</title>
+    <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <style type="text/css">
+    *:focus {
+      outline: 2px solid rebeccapurple;
+      outline-offset: 1px;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>SVG aria-label tests</h1>
+    <p>Names should be read using both cursor navigation/swiping and tabbing. Focusable SVG elements should be able to be triggered through voice control.</p>
+
+    <h2>Test cases</h2>
+
+    <h3>SVG with aria-label</h3>
+    <p>There should be two SVGs, both named with a shape and a color. The second is tabbable and clickable.</p>
+    <svg version="1.1" viewBox="0 0 10 10" x="200" width="100" aria-label="red square">
+      <rect width="50" height="50" fill="red" />
+    </svg>
+    <svg version="1.1" viewBox="0 0 100 100" x="100" width="100" aria-label="blue circle" tabindex="0" class="clickable">
+      <circle cx="50" cy="50" r="50" fill="blue" />
+    </svg>
+
+    <h3>Shapes with aria-label</h3>
+    <p>There should be X shapes, each named with a shape and a color. The first shape is always red, and the second is always blue. Every second shape is tabbable and clickable.</p>
+
+    <p>Circles:</p>
+    <svg version="1.1" viewBox="0 0 200 100" width="200" height="100">
+      <circle cx="40" cy="50" r="40" fill="red" aria-label="red circle" />
+      <circle cx="140" cy="50" r="40" fill="blue" aria-label="blue circle" tabindex="0" class="clickable" />
+    </svg>
+
+    <p>Ellipses:</p>
+    <svg version="1.1" viewBox="0 0 200 100" width="200" height="100">
+      <ellipse cx="40" cy="50" rx="40" ry="20" fill="red" aria-label="red ellipse" />
+      <ellipse cx="140" cy="50" rx="40" ry="20" fill="blue" aria-label="blue ellipse" tabindex="0" class="clickable" />
+    </svg>
+
+    <p>Lines:</p>
+    <svg version="1.1" viewBox="0 0 200 100" width="200" height="100">
+      <line x1="5" x2="80" y1="80" y2="20" stroke="red" stroke-width="5" aria-label="red line" />
+      <line x1="100" x2="180" y1="80" y2="20" stroke="blue" stroke-width="5" aria-label="blue line" tabindex="0" class="clickable" />
+    </svg>
+
+    <p>Polylines:</p>
+    <svg version="1.1" viewBox="0 0 200 100" width="200" height="100">
+      <polyline points="5,80 40,20 80,80" stroke="red" fill="none" stroke-width="5" aria-label="red polyline" />
+      <polyline points="100,80 140,20 180,80" stroke="blue" fill="none" stroke-width="5" aria-label="blue polyline" tabindex="0" class="clickable" />
+    </svg>
+
+    <p>Polygons:</p>
+    <svg version="1.1" viewBox="0 0 800 400" width="400" height="200">
+      <polygon points="150,75 258,137.5 258,262.5 150,325 42,262.6 42,137.5" fill="red" aria-label="red polygon" />
+      <polygon points="450,75 558,137.5 558,262.5 450,325 342,262.6 342,137.5" fill="blue" aria-label="blue polygon" tabindex="0" class="clickable" />
+    </svg>
+
+    <p>Rectangles:</p>
+    <svg version="1.1" viewBox="0 0 200 100" width="200" height="100">
+      <rect width="80" height="40" x="10" y="30" fill="red" aria-label="red rectangle" />
+      <rect width="80" height="40" x="110" y="30" fill="blue" aria-label="blue rectangle" />
+    </svg>
+
+    <h3>Group with aria-label</h3>
+    <p>There should be two groups, each named with a shape and color. The second is tabbable and clickable.</p>
+    <svg version="1.1" viewBox="0 0 200 100" width="200" height="100">
+      <g aria-label="red circle">
+        <circle cx="40" cy="50" r="40" fill="red" />
+      </g>
+      <g aria-label="blue circle" tabindex="0" class="clickable">
+        <circle cx="140" cy="50" r="40" fill="blue" />
+      </g>
+    </svg>
+
+    <h3>Path with aria-label</h3>
+    <p>There should be two paths, each named with a shape (triangle) and color. The second is tabbable and clickable.</p>
+    <svg version="1.1" viewBox="0 0 200 100" width="200" height="100">
+      <path d="M 20 20 L 80 20 L 50 80 z" fill="red" aria-label="red triangle" />
+      <path d="M 120 20 L 180 20 L 150 80 z" fill="blue" aria-label="blue triangle" tabindex="0" class="clickable" />
+    </svg>
+
+    <h3>Layered svg, group, and path names</h3>
+    <p>There should be three names read out: for the SVG, group, and inner path. The SVG should be named "shapes", the group is named "triangles" and the individual paths are "red" and "blue". The blue path is tabbable and clickable.</p>
+    <svg version="1.1" viewBox="0 0 200 100" width="200" height="100" aria-label="shapes">
+      <g aria-label="triangles">
+        <path d="M 20 20 L 80 20 L 50 80 z" fill="red" aria-label="red" />
+        <path d="M 120 20 L 180 20 L 150 80 z" fill="blue" aria-label="blue" tabindex="0" class="clickable" />
+      </g>
+    </svg>
+
+    <h2>Results</h2>
+
+    <h3>Sample support table for one test</h3>
+    <p>To create test results, copy this table, and add a new row per test case</p>
+    <div class="support-table">
+      <table>
+        <thead>
+          <tr>
+            <td></td>
+            <th>JAWS<br>Chrome</th>
+            <th>JAWS<br>Firefox</th>
+            <th>NVDA<br>Chrome</th>
+            <th>NVDA<br>Firefox</th>
+            <th>Narrator<br>Edge</th>
+            <th>Talkback<br>Chrome</th>
+            <th>iOS VO<br>Safari</th>
+            <th>macOS VO<br>Safari</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Test name 1</th>
+            <td class="true">pass</td>
+            <td class="true">pass</td>
+            <td class="true">pass</td>
+            <td class="true">pass</td>
+            <td class="false">fail</td>
+            <td class="false">fail</td>
+            <td class="true">pass</td>
+            <td class="false">fail</td>
+          </tr>
+          <tr>
+            <th scope="row">Test name 2</th>
+            <td class="true">pass</td>
+            <td class="false">fail</td>
+            <td class="true">pass</td>
+            <td class="false">fail</td>
+            <td class="true">pass</td>
+            <td class="false">fail</td>
+            <td class="true">pass</td>
+            <td class="false">fail</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function message(event) {
+        const tagName = event.target.tagName.toLowerCase();
+        const label = event.target.getAttribute('aria-label');
+        alert(`${tagName} was clicked: ${label}`);
+      }
+
+      function onKeyDown(event) {
+        console.log('keydown event', event);
+        if (event.key === ' ' || event.key === 'Enter') {
+          message(event);
+        }
+      }
+
+      const interactives = [...document.querySelectorAll('.clickable')];
+      interactives.forEach((el) => {
+        el.addEventListener('click', message);
+        el.addEventListener('keydown', onKeyDown);
+      });
+    </script>
+  </body>
+</html>
