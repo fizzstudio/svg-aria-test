@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SVG elements with ARIA roles</title>
+  <link rel="stylesheet" type="text/css" href="../assets/style.css">
+</head>
+<body>
+  <h1>Graphics roles tests</h1>
+  <p>
+    Ref: <a href="https://www.w3.org/TR/graphics-aria-1.0/">WAI-ARIA Graphics Module: W3C Recommendation 02 October
+      2018</a>
+  </p>
+
+  <h2><code>figure</code>, <code>region</code>, and <code>img</code> Roles</h2>
+
+  <h3>Expected behavior</h3>
+  <dl>
+    <dt>Navigation</dt>
+      <dd>Focusable SVG elements should be navigable in document order through keyboard control.</dd>
+
+    <dt>Accessible name</dt>
+      <dd>"figure", "region", "img"</dd>
+
+    <dt>Activation</dt>
+      <dd>Focusable SVG elements should be able to be triggered through keyboard click and voice control.</dd>  
+
+    <dt>Containment</dt>
+      <dd>Child elements should be exposed.</dd>  
+  </dl>
+
+  <h3>Example</h3>
+
+  <figure id="fig1" role="figure region">
+    <svg id="fig1A" class="nested-figure" role="figure" aria-labelledby="fig1-caption, fig1A-caption">
+      <linearGradient id="repeat" x2="25%" spreadMethod="repeat">
+        <stop offset="0" stop-color="black"></stop>
+        <stop offset="0.8" stop-color="white"></stop>
+        <stop offset="1" stop-color="black"></stop>
+      </linearGradient>
+      <text id="fig1A-caption" class="caption" dy="1em">a) spreadMethod="repeat"</text>
+      <rect role="img" y="25%" width="100%" height="75%" fill="url(#repeat)">
+        <title>A repeating linear gradient</title>
+        <desc>The gradient starts dark, slowly shifting to light,
+          then quickly dark again. This pattern repeats four
+          times left to right, each time brightening across a large
+          region and then getting dark within a short space.
+        </desc>
+      </rect>
+    </svg>
+    <svg id="fig1B" class="nested-figure" role="figure" aria-labelledby="fig1-caption, fig1B-caption">
+      <linearGradient id="reflect" spreadMethod="reflect" xlink:href="#repeat"></linearGradient>
+      <text id="fig1B-caption" class="caption" dy="1em">b) spreadMethod="reflect"</text>
+      <rect role="img" y="25%" width="100%" height="75%" fill="url(#reflect)">
+        <title>A reflecting linear gradient</title>
+        <desc>The gradient again starts dark, slowly shifting to light,
+          then quickly dark again. However, the next repeat shifts
+          quickly to the light, then slowly back dark.
+          The original pattern is then repeated, followed by the reflected
+          version again.
+        </desc>
+      </rect>
+    </svg>
+    <figcaption id="fig1-caption">Figure 1: Repeating SVG gradients</figcaption>
+  </figure>
+
+  <p>
+    <a
+      href="https://www.w3.org/TR/graphics-aria-1.0/#ex-6-example-6-within-an-html-5-document-an-inline-svg-may-sometimes-represent-an-atomic-img-if-the-graphics-form-part-of-the-natural-reading-flow-of-the-text-then-this-role-is-sufficient-as-in-the-first-example-p-a-repeating-svg-gradient-is-defined-using-the-code-spreadmethod-code-attribute-a-value-of-code-repeat-code-causes-the-color-stops-to-repeat-in-the-same-order-from-beginning-to-end-p-svg-class-inline-example-role-img-title-a-repeating-linear-gradient-title-desc-the-gradient-starts-dark-slowly-shifting-to-light-then-quickly-dark-again-this-pattern-repeats-four-times-left-to-right-each-time-brightening-across-a-large-region-and-then-getting-dark-within-a-short-space-desc-lineargradient-id-repeat-x2-25-spreadmethod-repeat-stop-offset-0-stop-color-black-stop-offset-0-8-stop-color-white-stop-offset-1-stop-color-black-lineargradient-rect-width-100-height-100-fill-url-repeat-svg-the-following-example-provides-the-same-content-but-now-structured-as-a-figure-that-may-be-re-positioned-separately-from-the-flow-of-paragraph-text-figure-id-fig1-role-figure-region-svg-id-fig1a-class-nested-figure-role-figure-aria-labelledby-fig1-caption-fig1a-caption-markup-omitted-svg-svg-id-fig1b-class-nested-figure-role-figure-aria-labelledby-fig1-caption-fig1b-caption-lineargradient-id-reflect-spreadmethod-reflect-xlink-href-repeat-text-id-fig1b-caption-class-caption-dy-1em-b-spreadmethod-reflect-text-rect-role-img-y-25-width-100-height-75-fill-url-reflect-title-a-reflecting-linear-gradient-title-desc-the-gradient-again-starts-dark-slowly-shifting-to-light-then-quickly-dark-again-however-the-next-repeat-shifts-quickly-to-the-light-then-slowly-back-dark-the-original-pattern-is-then-repeated-followed-by-the-reflected-version-again-desc-rect-svg-figcaption-id-fig1-caption-figure-1-repeating-svg-gradients-figcaption-figure-finally-the-last-version-uses-a-graphics-document-to-include-complex-annotations-on-the-graphic-which-is-still-contained-within-a-figure-element-the-two-sections-of-the-graphic-are-graphics-object-elements-while-the-annotations-have-individual-labels-and-descriptions-figure-id-fig1-role-figure-region-svg-role-graphics-document-title-repeating-versus-reflecting-linear-gradients-title-desc-the-graphic-shows-two-gradient-patterns-annotated-with-text-labels-and-arrows-both-gradients-use-the-same-series-of-color-stops-starting-dark-slowly-shifting-to-light-then-quickly-dark-again-this-cycle-covers-one-quarter-of-the-width-of-the-graphic-starting-on-the-left-the-two-gradients-differ-in-their-repeat-cycles-desc-defs-markup-omitted-defs-g-role-graphics-object-aria-labelledby-repeat-label-markup-omitted-g-g-role-graphics-object-aria-labelledby-reflect-label-desc-the-gradient-stretches-across-the-bottom-half-of-the-graphic-each-cycle-of-the-gradient-alternates-direction-left-to-right-then-right-to-left-as-do-the-arrows-that-emphasize-the-pattern-desc-rect-y-50-width-100-height-50-fill-url-reflect-rect-use-y-70-xlink-href-gradient-vector-title-1st-cycle-title-desc-left-to-right-arrow-starting-from-x-0-desc-use-use-y-70-x-50-transform-scale-1-1-xlink-href-gradient-vector-title-2nd-cycle-reflected-title-desc-right-to-left-arrow-ending-at-x-25-desc-use-use-y-70-x-50-xlink-href-gradient-vector-title-3rd-cycle-title-desc-left-to-right-arrow-starting-from-x-50-desc-use-use-y-70-x-100-transform-scale-1-1-xlink-href-gradient-vector-title-4th-cycle-reflected-title-desc-right-to-left-arrow-ending-at-x-75-desc-use-text-id-reflect-label-class-overlay-text-aria-label-spreadmethod-reflect-dy-0-2em-dx-0-2em-x-100-y-100-reflect-text-g-svg-figcaption-figure-1-spreadmethod-options-for-repeating-svg-gradients-figcaption-figure">Direct
+      link</a>
+  </p>
+</body>
+</html>
