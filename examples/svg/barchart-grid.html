@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Barchart role="grid"</title>
+  <link rel="stylesheet" type="text/css" href="../assets/style.css">
+  <style>
+    svg {
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Barchart role="grid"</h1>
+
+  <section>
+    <svg role="grid" aria-colcount="4"  tabindex="0"
+      id="barchart-grid">
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+      <style>
+        .series_1 path {
+          fill: hsl(197, 82%, 38%);
+          stroke: hsl(197, 82%, 38%);
+        }
+
+        .series_2 path {
+          fill: hsl(176, 82%, 38%);
+          stroke: hsl(176, 82%, 38%);
+        }
+
+        text {
+          font-family: Arial, Helvetica, sans-serif;
+          text-anchor: middle;
+        }
+
+            
+        .y_axis_line {
+          fill: none;
+          stroke: hsl(0, 0%, 0%);
+          stroke-width: 2px;
+          stroke-linecap: round
+        }
+    
+        .x_axis_line {
+          fill: none;
+          stroke: hsl(0, 0%, 0%);
+          opacity: 1;
+          stroke-width: 2px;
+          stroke-linecap: round
+        }
+    
+        .axis_label {
+          text-anchor: middle;
+          fill: hsl(0, 0%, 0%);
+          stroke: none
+        }
+    
+        .axis_label_y {
+          text-anchor: end;
+          fill: hsl(0, 0%, 0%);
+          stroke: none
+        }
+    
+        .tickmark_y {
+          opacity: 0.2
+        }
+    
+        .tickmark_y_0 {
+          fill: hsl(270, 50%, 50%);
+          stroke: hsl(270, 50%, 50%);
+          opacity: 1;
+          stroke-width: 2px;
+          stroke-linecap: round
+        }
+    
+        .tickmark_x {
+          opacity: 0.2
+        }
+    
+        .tickmark_x_0 {
+          fill: hsl(270, 50%, 50%);
+          stroke: hsl(270, 50%, 50%);
+          opacity: 1;
+          stroke-width: 2px;
+          stroke-linecap: round
+        }
+
+      </style>
+
+      <text id="barchart-title" class="chart_title" transform="translate(250.00,29.40)">Number of Books Read by Reader</text>
+
+      <g aria-hidden="true"
+        id="y-axis" data-axistype="numeric" tabindex="-1" transform="translate(61.80,43.00)">
+        <path id="y_Fiction_Nonfiction_line-3" class="y_axis_line" d="M0,403 V0" />
+        <g transform="translate(0,403.00)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">0</text>
+          <path id="x_Reader_line-4" class="x_axis_line" d="M-10,0 H423.2" aria-hidden="true"/>
+        </g>
+        <g transform="translate(0,358.22)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">1</text>
+          <use href="#x_Reader_line-4" class="tickmark_y" />
+        </g>
+        <g transform="translate(0,313.44)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">2</text>
+          <use href="#x_Reader_line-4" class="tickmark_y" />
+        </g>
+        <g transform="translate(0,268.67)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">3</text>
+          <use href="#x_Reader_line-4" class="tickmark_y" />
+        </g>
+        <g transform="translate(0,223.89)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">4</text>
+          <use href="#x_Reader_line-4" class="tickmark_y" />
+        </g>
+        <g transform="translate(0,179.11)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">5</text>
+          <use href="#x_Reader_line-4" class="tickmark_y" />
+        </g>
+        <g transform="translate(0,134.33)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">6</text>
+          <use href="#x_Reader_line-4" class="tickmark_y" />
+        </g>
+        <g transform="translate(0,89.56)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">7</text>
+          <use href="#x_Reader_line-4" class="tickmark_y" />
+        </g>
+        <g transform="translate(0,44.78)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">8</text>
+          <use href="#x_Reader_line-4" class="tickmark_y" />
+        </g>
+        <g transform="translate(0,0.00)" class="tick_group_y"><text class="axis_label_y" transform="translate(-13,4)"
+            style="font-size:13px">9</text>
+          <use href="#x_Reader_line-4" class="tickmark_y" />
+        </g><text class="axis_label" style="font-size:15px" transform="translate(-28.8,201.5) rotate(-90)">Number of Books
+          Read </text>
+      </g>
+
+
+      <g role="rowgroup">
+        <g role="row" transform="translate(61.8,480)">
+          <text role="columnheader" aria-colindex="1" tabindex="0"
+            transform="translate(56.28,0)">Alan</text>
+          <text role="columnheader" aria-colindex="2" tabindex="-1"
+            transform="translate(159.83,0)">Beth</text>
+          <text role="columnheader" aria-colindex="3" tabindex="-1"
+            transform="translate(263.38,0)">Cameron</text>
+          <text role="columnheader" aria-colindex="4" tabindex="-1"
+            transform="translate(366.92,0)">Dana</text>
+        </g>
+      </g>
+      <g role="rowgroup" transform="translate(61.8,43)" id="dataset">
+        <g role="row" class="series_1">
+          <path role="gridcell" aria-colindex="1" tabindex="-1" aria-label="3"
+            d="M-50,268 V402 H50 V268 Z" transform="translate(56.28,0)"/>
+          <path role="gridcell" aria-colindex="1" tabindex="-1" aria-label="6"
+            d="M-50,134 V402 H50 V134 Z" transform="translate(159.83,0)"/>
+          <path role="gridcell" aria-colindex="1" tabindex="-1" aria-label="4"
+            d="M-50,223 V402 H50 V223 Z" transform="translate(263.38,0)"/>
+          <path role="gridcell" aria-colindex="1" tabindex="-1" aria-label="2"
+            d="M-50,312 V402 H50 V312 Z" transform="translate(366.92,0)"/>
+        </g>
+        <g role="row" class="series_2">
+          <path role="gridcell" aria-colindex="1" tabindex="-1" aria-label="1"
+            d="M-50,357 V402 H50 V357 Z" transform="translate(56.28,0) translate(0,-133.83)"/>
+          <path role="gridcell" aria-colindex="1" tabindex="-1" aria-label="3"
+            d="M-50,268 V402 H50 V268 Z" transform="translate(159.83,0) translate(0,-267.67)"/>
+          <path role="gridcell" aria-colindex="1" tabindex="-1" aria-label="4"
+            d="M-50,223 V402 H50 V223 Z" transform="translate(263.38,0) translate(0,-178.44)"/>
+          <path role="gridcell" aria-colindex="1" tabindex="-1" aria-label="5"
+            d="M-50,178 V402 H50 V178 Z" transform="translate(366.92,0) translate(0,-89.22)"/>
+        </g>
+      </g>
+    </svg>    
+    <h4>Expectations</h4>
+    <ol>
+      <li>
+        Data cells can be focused using standard navigation keys, including directional arrows, <kbd>Home</kbd>,
+        <kbd>End</kbd>, <kbd>Control + Home</kbd>, and <kbd>Control + End</kbd>.
+      </li>
+      <li>
+        The <kbd>Page Down</kbd> and <kbd>Page Up</kbd> keys are not supported since such
+        scroll-like functions are not useful with so few rows.
+      </li>
+      <li>The links can be activated with the keyboard when focused.</li>
+      <li>
+        Since the header cells do not provide any functionality, they
+        are not focusable.
+        Screen reader users are still aware of their presence
+        because row and column headers are announced by screen readers during
+        navigation.
+        And, they are also navigable when using a screen reader's
+        reading or browsing mode.
+      </li>
+    </ol>
+  </section>
+
+</body>
+
+</html>
