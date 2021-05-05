@@ -52,7 +52,7 @@ class Chart {
   }
 
   updateCurrentPoint(newIndex) {
-    this.rootEl.setAttribute('aria-activedescendant', `${this.rootEl}${newIndex}`);
+    this.rootEl.setAttribute('aria-activedescendant', `${this.idBase}${newIndex}`);
 
     this.dataPoints[this.activeId].classList.remove('focus');
     this.dataPoints[newIndex].classList.add('focus');
