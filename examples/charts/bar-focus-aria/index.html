@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG Bar Chart with graphics roles and focus handling</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {
+        font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        line-height: 1.4;
+    }
+    code {
+      font-family: 'Consolas', 'Andale Mono', 'Lucida Sans Typewriter', 'Courier New', 'Roboto Mono', Courier, monospace;
+      font-weight: normal;
+      font-variant-ligatures: none;
+    }
+    svg {
+        /*   outline: 1px dotted #f00; */
+        max-width: 100vw;
+        max-height: 90vh;
+    }
+    
+    line {
+      stroke-width: .01rem;
+      stroke: currentColor;
+    }
+    rect[aria-labelledby] {
+      fill: url(#crosshatch) #000;
+      stroke-width: .01rem;
+      stroke: #000;
+    }
+    text {
+      font: inherit;
+      font-size: 4px;
+      /* font-size: inherit; */
+      /* outline: .01vw dotted #0f0;*/
+    }
+    svg *:focus {
+      stroke: none;
+      fill: #f00;
+      outline: .02rem solid #f00;
+    }
+    #MulticlassBreakdown, #MulticlassBreakdown[aria-hidden="true"] {
+      display: none;
+    }
+    #MulticlassBreakdown:target, #MulticlassBreakdown.show {
+      display: unset;
+    }
+    #MulticlassBreakdown > rect:first-child {
+      fill: #fff;
+      stroke-width: .02rem;
+      stroke: #000;
+    }
+
+    .dialog {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 1em;
+      background: #fff;
+      border: 1px solid #888;
+      border-radius: 4px;
+    }
+
+    .dialog.open {
+      display: block;
+    }
+</style>
+</head>
+
+<body>
+<h1>SVG Bar Chart with graphics roles and focus handling</h1>
+
+<p>A bar chart with ARIA graphics document roles, and roving tabindex with focus handling.</p>
+<p>For screen readers with dual modes, it's necessary to manually switch to focus mode/app mode for keyboard handling to work.</p>
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="graphics-document region" aria-labelledby="h">
+  <!--  Origin is uppper left instead of bottom left  -->
+    <style>
+      line {
+        stroke-width: .01rem;
+        stroke: currentColor;
+      }
+      rect {
+        fill: url(#crosshatch) #000;
+      }
+      text {
+        font: inherit;
+        font-size: 4px;
+        /* font-size: inherit; */
+        /* outline: .01vw dotted #0f0;*/
+      }
+    </style>
+  <!--  Chart name  -->
+    <text x="50" y="10" id="h">Party Deaths by Class</text>
+    <g role="graphics-object group">
+      <text x="40" y="45" text-anchor="middle" id="b01v" aria-hidden="true">5</text>
+      <rect x="30" y="50" width="20" height="50" role="graphics-symbol img" tabindex="0" aria-labelledby="b01t b01v" class="data-point" />
+      <text x="40" y="105" text-anchor="middle" id="b01t" aria-hidden="true">Ranger</text>
+    </g>
+    <g role="graphics-object group">
+      <text x="70" y="25" text-anchor="middle" id="b02v" aria-hidden="true">7</text>
+      <rect x="60" y="30" width="20" height="70" role="graphics-symbol img" tabindex="-1" aria-labelledby="b02t b02v" class="data-point" />
+      <text x="70" y="105" text-anchor="middle" id="b02t" aria-hidden="true">Rogue</text>
+    </g>
+    <g role="graphics-object group">
+      <text x="100" y="85" text-anchor="middle" id="b03v" aria-hidden="true">1</text>
+      <rect x="90" y="90" width="20" height="10" role="graphics-symbol img" tabindex="-1" aria-labelledby="b03t b03v"  class="data-point"/>
+      <text x="100" y="105" text-anchor="middle" id="b03t" aria-hidden="true">Cleric</text>
+    </g>
+    <g aria-hidden="true">
+    <!--  last in structure so it overlaps everything prior    -->
+    <!--  y-axis labels  -->
+      <text x="5" y="50" text-anchor="middle" class="y" transform="rotate(-90 5 50)">Party Deaths</text>
+      <text x="15" y="20" text-anchor="middle">8</text>
+      <text x="15" y="40" text-anchor="middle">6</text>
+      <text x="15" y="60" text-anchor="middle">4</text>
+      <text x="15" y="80" text-anchor="middle">2</text>
+      <text x="15" y="100" text-anchor="middle">0</text>
+    <!--  x-axis label  -->
+      <text x="70" y="115" text-anchor="middle" class="x">by Class</text>
+    <!--  x-axis line -->
+      <line x1="20" y1="100" x2="120" y2="100" />
+    <!--  y-axis line -->
+      <line x1="20" y1="0" x2="20" y2="100" />
+    </g>
+    <defs aria-hidden="true"> 
+      <!--   http://iros.github.io/patternfills/sample_svg.html   -->
+      <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="1" height="1">
+        <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg==" x="0" y="0" width="1" height="1"></image>
+      </pattern>
+    </defs> 
+  </svg>
+
+  <div class="dialog">point clicked</div>
+
+  <script src="chart.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    const chart = document.querySelector('svg');
+
+    function onPointClick(point) {
+      // kinda hacky way to get text of point
+      const name = point.nextElementSibling.textContent;
+      console.log(point);
+      alert(`point clicked: ${name}`);
+    }
+
+    new Chart(chart, { onClick: onPointClick });
+  </script>
+</body>
+</html>
