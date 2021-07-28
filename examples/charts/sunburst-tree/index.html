@@ -50,13 +50,13 @@
 <body>
   <h1>SVG Sunburst Chart with tree roles</h1>
 
-  <p>A sunburst chart with ARIA tree roles, and roving tabindex with focus handling.</p>
+  <p>A sunburst chart with ARIA tree roles, and roving tabindex with focus handling. Tree items under "Australia" have a direct name through aria-label, items under "North America" have aria-labelledby pointing at the text element, and items under Europe get their name from content.</p>
   <svg width="700" height="450" xmlns="http://www.w3.org/2000/svg" role="tree"
     aria-labelledby="chart-title">
     <title id="chart-title">Types of football</title>
     <g class="sunburstlayer" role="presentation">
       <g class="trace sunburst" role="presentation" stroke-linejoin="round" style="opacity: 1;">
-        <g class="slice cursor-pointer" role="treeitem" tabindex="0">
+        <g class="slice cursor-pointer" role="treeitem" tabindex="0" aria-label="Australia">
           <path class="surface" aria-hidden="true"
             style="pointer-events: all; stroke-width: 2px; fill: rgb(99, 110, 250); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1;"
             d="M350,225L406.25,225A56.25,56.25 0,0,0 296.0285202341845,209.1525436776696L350,225A0,0 0,0,1 350,225Z">
@@ -66,7 +66,7 @@
               data-unformatted="Australia" data-math="N" x="0" y="0"
               transform="translate(354.0235371638542,201.51886815875707)">Australia</text></g>
           <g role="group">
-            <g class="slice cursor-pointer" role="treeitem" tabindex="-1">
+            <g class="slice cursor-pointer" role="treeitem" tabindex="-1" aria-label="Football">
               <path class="surface" aria-hidden="true"
                 style="pointer-events: all; stroke-width: 2px; fill: rgb(99, 110, 250); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1;"
                 d="M406.25,225L462.5,225A112.5,112.5 0,0,0 242.05704046836905,193.30508735533917L296.0285202341845,209.1525436776696A56.25,56.25 0,0,1 406.25,225Z">
@@ -77,7 +77,7 @@
                   transform="translate(362.0077534441522,145.9838158412963)">Football</text>
               </g>
               <g role="group">
-                <g class="slice" role="treeitem" tabindex="-1">
+                <g class="slice" role="treeitem" tabindex="-1" aria-label="Association">
                   <path class="surface" aria-hidden="true"
                     style="pointer-events: all; stroke-width: 2px; fill: rgb(99, 110, 250); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1; opacity: 0.7;"
                     d="M396.7341889627122,122.66640052261668L420.1012834440683,71.49960078392502A168.75,168.75 0,0,0 325.98437104138316,57.96763168259258L333.98958069425544,113.64508778839506A112.5,112.5 0,0,1 396.7341889627122,122.66640052261668Z">
@@ -88,7 +88,7 @@
                       transform="translate(371.06480341893655,78.48968027291085)rotate(8.18181818181813)">Association</text>
                   </g>
                 </g>
-                <g class="slice" role="treeitem" tabindex="-1">
+                <g class="slice" role="treeitem" tabindex="-1" aria-label="Australian Rules">
                   <path class="surface" aria-hidden="true"
                     style="pointer-events: all; stroke-width: 2px; fill: rgb(99, 110, 250); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1; opacity: 0.7;"
                     d="M333.98958069425544,113.64508778839506L325.98437104138316,57.96763168259258A168.75,168.75 0,0,0 239.49225114673317,97.46725932771889L276.3281674311554,139.97817288514594A112.5,112.5 0,0,1 333.98958069425544,113.64508778839506Z">
@@ -101,7 +101,7 @@
                       <tspan class="line" dy="1.3em" x="0" y="0">Rules</tspan>
                     </text></g>
                 </g>
-                <g class="slice" role="treeitem" tabindex="-1">
+                <g class="slice" role="treeitem" tabindex="-1" aria-label="American Football">
                   <path class="surface" aria-hidden="true"
                     style="pointer-events: all; stroke-width: 2px; fill: rgb(99, 110, 250); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1; opacity: 0.7;"
                     d="M276.3281674311554,139.97817288514594L239.49225114673317,97.46725932771889A168.75,168.75 0,0,0 188.08556070255358,177.45763103300874L242.05704046836905,193.30508735533917A112.5,112.5 0,0,1 276.3281674311554,139.97817288514594Z">
@@ -114,7 +114,7 @@
                       <tspan class="line" dy="1.3em" x="0" y="0">Football</tspan>
                     </text></g>
                 </g>
-                <g class="slice cursor-pointer" role="treeitem" tabindex="-1">
+                <g class="slice cursor-pointer" role="treeitem" tabindex="-1" aria-label="Rugby">
                   <path class="surface" aria-hidden="true"
                     style="pointer-events: all; stroke-width: 2px; fill: rgb(99, 110, 250); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1;"
                     d="M462.5,225L518.75,225A168.75,168.75 0,0,0 420.1012834440683,71.49960078392502L396.7341889627122,122.66640052261668A112.5,112.5 0,0,1 462.5,225Z">
@@ -124,7 +124,7 @@
                       data-unformatted="Rugby" data-math="N" x="0" y="0"
                       transform="translate(468.3017358180567,153.47238504530657)">Rugby</text></g>
                   <g role="group">
-                    <g class="slice" role="treeitem" tabindex="-1">
+                    <g class="slice" role="treeitem" tabindex="-1" aria-label="Rugby Union">
                       <path class="surface" aria-hidden="true"
                         style="pointer-events: all; stroke-width: 2px; fill: rgb(99, 110, 250); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1; opacity: 0.7;"
                         d="M491.96153366526187,133.7668620543679L539.2820448870158,103.35581607249055A225,225 0,0,0 443.4683779254244,20.332801045233367L420.1012834440683,71.49960078392502A168.75,168.75 0,0,1 491.96153366526187,133.7668620543679Z">
@@ -137,7 +137,7 @@
                           <tspan class="line" dy="1.3em" x="0" y="0">Union</tspan>
                         </text></g>
                     </g>
-                    <g class="slice" role="treeitem" tabindex="-1">
+                    <g class="slice" role="treeitem" tabindex="-1" aria-label="Rugby League">
                       <path class="surface" aria-hidden="true"
                         style="pointer-events: all; stroke-width: 2px; fill: rgb(99, 110, 250); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1; opacity: 0.7;"
                         d="M518.75,225L575,225A225,225 0,0,0 539.2820448870158,103.35581607249055L491.96153366526187,133.7668620543679A168.75,168.75 0,0,1 518.75,225Z">
@@ -156,7 +156,7 @@
             </g>
           </g>
         </g>
-        <g class="slice cursor-pointer" role="treeitem" tabindex="-1">
+        <g class="slice cursor-pointer" role="treeitem" tabindex="-1" aria-labelledby="na-name1 na-name2">
           <path class="surface" aria-hidden="true"
             style="pointer-events: all; stroke-width: 2px; fill: rgb(239, 85, 59); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1;"
             d="M350,225L296.0285202341845,209.1525436776696A56.25,56.25 0,0,0 341.9947903471277,280.67745610580243L350,225A0,0 0,0,1 350,225Z">
@@ -165,36 +165,36 @@
               style="font-family: 'Open Sans', verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;"
               data-unformatted="North<br>America" data-math="N" x="0" y="0"
               transform="translate(322.310313576443,242.79540866479743)scale(0.8604075214725704)rotate(57.27272727272725)">
-              <tspan class="line" dy="0em" x="0" y="0">North</tspan>
-              <tspan class="line" dy="1.3em" x="0" y="0">America</tspan>
+              <tspan id="na-name1" class="line" dy="0em" x="0" y="0">North</tspan>
+              <tspan id="na-name2" class="line" dy="1.3em" x="0" y="0">America</tspan>
             </text></g>
           <g role="group">
-            <g class="slice" role="treeitem" tabindex="-1">
+            <g class="slice" role="treeitem" tabindex="-1" aria-labelledby="football">
               <path class="surface" aria-hidden="true"
                 style="pointer-events: all; stroke-width: 2px; fill: rgb(239, 85, 59); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1; opacity: 0.7;"
                 d="M296.0285202341845,209.1525436776696L242.05704046836905,193.30508735533917A112.5,112.5 0,0,0 242.05704046836905,256.69491264466086L296.0285202341845,240.84745632233043A56.25,56.25 0,0,1 296.0285202341845,209.1525436776696Z">
               </path>
-              <g class="slicetext" role="presentation"><text data-notex="1" class="slicetext" text-anchor="middle"
+              <g class="slicetext" role="presentation"><text id="football" data-notex="1" class="slicetext" text-anchor="middle"
                   style="font-family: 'Open Sans', verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;"
                   data-unformatted="Football" data-math="N" x="0" y="0"
                   transform="translate(265.8688960257195,229.5)">Football</text></g>
             </g>
-            <g class="slice" role="treeitem" tabindex="-1">
+            <g class="slice" role="treeitem" tabindex="-1" aria-labelledby="soccer">
               <path class="surface" aria-hidden="true"
                 style="pointer-events: all; stroke-width: 2px; fill: rgb(239, 85, 59); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1; opacity: 0.7;"
                 d="M296.0285202341845,240.84745632233043L242.05704046836905,256.69491264466086A112.5,112.5 0,0,0 276.32816743115546,310.0218271148541L313.1640837155777,267.51091355742705A56.25,56.25 0,0,1 296.0285202341845,240.84745632233043Z">
               </path>
-              <g class="slicetext" role="presentation"><text data-notex="1" class="slicetext" text-anchor="middle"
+              <g class="slicetext" role="presentation"><text id="soccer" data-notex="1" class="slicetext" text-anchor="middle"
                   style="font-family: 'Open Sans', verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;"
                   data-unformatted="Soccer" data-math="N" x="0" y="0"
                   transform="translate(276.161706896184,276.9530288234532)">Soccer</text></g>
             </g>
-            <g class="slice" role="treeitem" tabindex="-1">
+            <g class="slice" role="treeitem" tabindex="-1" aria-labelledby="rugby">
               <path class="surface" aria-hidden="true"
                 style="pointer-events: all; stroke-width: 2px; fill: rgb(239, 85, 59); fill-opacity: 1; stroke: rgb(255, 255, 255); stroke-opacity: 1; opacity: 0.7;"
                 d="M313.1640837155777,267.51091355742705L276.32816743115546,310.0218271148541A112.5,112.5 0,0,0 333.98958069425544,336.3549122116049L341.9947903471277,280.67745610580243A56.25,56.25 0,0,1 313.1640837155777,267.51091355742705Z">
               </path>
-              <g class="slicetext" role="presentation"><text data-notex="1" class="slicetext" text-anchor="middle"
+              <g class="slicetext" role="presentation"><text id="rugby" data-notex="1" class="slicetext" text-anchor="middle"
                   style="font-family: 'Open Sans', verdana, arial, sans-serif; font-size: 12px; fill: rgb(68, 68, 68); fill-opacity: 1; white-space: pre;"
                   data-unformatted="Rugby" data-math="N" x="0" y="0"
                   transform="translate(313.53872577967735,309.34005628253976)">Rugby</text></g>
