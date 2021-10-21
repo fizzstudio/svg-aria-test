@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Aria on interactive svg elements</title>
+  <title>Radio-input-like aria on svg elements: Graphics-document</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
@@ -65,9 +65,9 @@
 </head>
 
 <body>
-  <h1>Aria on interactive svg elements</h1>
+  <h1>Radio-input-like aria on svg elements: Graphics-document</h1>
   <p>
-    The core test here is to determine whether aria-pressed and role=button can be used effectively on an SVG primitive.
+    There are times when SVG based charts, graphs, or graphics may operate in a similar fashion to input type=radio elements. These elements can be pressed and selected and will provide screen-reader feedback. The core test here is to determine whether aria-pressed and role=button can be used effectively on an SVG primitive.
   </p>
   <h2>SVG Bar Chart with toggleable elements</h2>
   <p>
@@ -89,17 +89,6 @@
     <li>We expect that the SVG elements will provide the same experience as the HTML elements (below the SVG space).
     </li>
   </ul>
-  <h3>Future additions:</h3>
-  <p>
-    We want to test interactivity for both root SVG elements as well as for g elements and also test different aria
-    structures. In the future, this dropdown below will allow the tester to swap between aria structures.
-  </p>
-  <label for="structure_selector">Choose an aria structure:</label>
-  <select name="structure_selector" id="structure_selector">
-    <option value="graphics">graphics-document, graphics-object, button (default)</option>
-    <option value="region" disabled>region, group, button</option>
-    <option value="figure" disabled>figure, group, button</option>
-  </select>
   <h3>Interaction Instructions</h3>
   <p>
     Move into the chart using TAB (or a screen reader) and then press ENTER on an element.
@@ -143,7 +132,7 @@
   </div>
   <h2>html examples with toggleable state</h2>
   <p>
-    The following example while somewhat terrible (for not using input/button elements), is given as an example of
+    The following example while somewhat terrible (for not using radio input/button elements), is given as an example of
     whether or not the SVG will perform the same.
   </p>
   <div class='level-1' role='graphics-document document'>
@@ -176,7 +165,8 @@
       registerData(this);
     }
     function onKeyDown(event) {
-      if (event.key === 'Enter') {
+      if (event.key === 'Space' || event.key === ' ') {
+        event.preventDefault()
         const target = this
         registerData(this);
       }
