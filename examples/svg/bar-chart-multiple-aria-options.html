@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Svg elements: Graphics-document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        line-height: 1.4;
+      }
+
+      code {
+        font-family: "Consolas", "Andale Mono", "Lucida Sans Typewriter", "Courier New", "Roboto Mono", Courier, monospace;
+        font-weight: normal;
+        font-variant-ligatures: none;
+      }
+
+      svg {
+        /*   outline: 1px dotted #f00; */
+        max-width: 100vw;
+        max-height: 90vh;
+      }
+
+      .html-button {
+        max-width: 20vw;
+        padding: .8rem;
+        margin: .45rem 0;
+        border: .1rem solid black;
+      }
+
+      line {
+        stroke-width: .01rem;
+        stroke: currentColor;
+      }
+
+      .level-3 {
+        fill: url(#crosshatch) #000;
+        stroke-width: .01rem;
+        stroke: #000;
+      }
+
+      text {
+        font: inherit;
+        font-size: 4px;
+        /* font-size: inherit; */
+        /* outline: .01vw dotted #0f0;*/
+      }
+
+      .pressed {
+        fill: #000000;
+        background-color: #000000;
+        color: #ffffff;
+      }
+
+      :focus {
+        outline: .45rem solid #f00;
+      }
+
+      .chart-element:focus {
+        outline: .02rem solid #f00;
+      }
+
+      .centered {
+        text-anchor: middle;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Svg elements: Graphics-document</h1>
+    <p>
+      This is a test using the graphics module specification, with role fallbacks, for an SVG structure. The root SVG uses role="graphics-document region", g elements use role="graphics-object group", and child elements use role="graphics-symbol img". No assistance has been given to a screen reader for navigation (such as via tabindex or JavaScript). We expect that the roles + aria should be sufficient.
+    </p>
+    <ul>Expectations:
+      <li>We expect that a screen reader (SR) can navigate to each element using a keyboard.</li>
+      <li>We expect that a SR will announce the aria-label correctly.</li>
+      <li>We expect that different SVG primitives (rect, circle, path, text) will be consistent with each other based on
+        previous expectations.</li>
+      <li>We expect that the SVG elements will provide the same experience as the HTML elements (below the SVG space).
+      </li>
+    </ul>
+    <h2>Interaction Instructions</h2>
+    <p>
+      This chart must be tested using a screen reader only. Navigate as normally when using a screen reader. The elements are not interactive and no javascript is used.
+    </p>
+    <div>
+      <svg viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" class="level-1" role="graphics-document region"
+        aria-labelledby="title subtitle">
+        <!--  Origin is uppper left instead of bottom left  -->
+        <!--  Chart name  -->
+        <text x="50%" y="5" id="title" class="centered">A graphical display of data</text>
+        <text x="50%" y="10" id="subtitle" class="centered">Each element contains different information</text>
+        <g class="chart-element level-2" role="graphics-object group" aria-label="Rect and Circle">
+          <text x="40" y="45" text-anchor="middle" id="b01v" aria-hidden="true">5</text>
+          <rect x="30" y="50" width="20" height="50" class="chart-element level-3" role="graphics-symbol img"
+            aria-pressed="false" aria-labelledby="b01v b01t" />
+          <text x="40" y="105" text-anchor="middle" id="b01t" aria-hidden="true">Rect</text>
+          <text x="70" y="25" text-anchor="middle" id="b02v" aria-hidden="true">7</text>
+          <circle cx="70" cy="40" r="10" class="chart-element level-3" role="graphics-symbol img" aria-pressed="false"
+            aria-labelledby="b02v b02t" />
+          <text x="70" y="105" text-anchor="middle" id="b02t" aria-hidden="true">Circle</text>
+        </g>
+        <g class="chart-element level-2" role="graphics-object group" aria-label="Path and Text">
+          <text x="100" y="85" text-anchor="middle" id="b03v" aria-hidden="true">1</text>
+          <path d="M90,90 L110,90 L110,100 L90,100 Z" class="chart-element level-3" role="graphics-symbol img"
+            aria-pressed="false" aria-labelledby="b03v b03t" />
+          <text x="100" y="105" text-anchor="middle" id="b03t" aria-hidden="true">Path</text>
+          <text x="130" y="65" text-anchor="middle" id="b04v" aria-hidden="true">3</text>
+          <text x="120" y="70" class="chart-element level-3" role="graphics-symbol img" aria-pressed="false"
+            aria-labelledby="b04v b04t">Decorative
+            Text</text>
+          <text x="130" y="105" text-anchor="middle" id="b04t" aria-hidden="true">Text</text>
+        </g>
+        <defs aria-hidden="true">
+          <!--   http://iros.github.io/patternfills/sample_svg.html   -->
+          <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="1" height="1">
+            <image
+              xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg=="
+              x="0" y="0" width="1" height="1"></image>
+          </pattern>
+        </defs>
+      </svg>
+    </div>
+    <h2>html examples</h2>
+    <p>
+      The following HTML is given as an example of
+      whether or not the SVG will perform the same.
+    </p>
+    <div class="level-1" role="graphics-document region" aria-labelledby="html-title html-subtitle">
+      <p aria-hidden="true" id="html-title">A graphical display of data</p>
+      <p aria-hidden="true" id="html-subtitle">Each element contains different information</p>
+      <div class="level-2" role="graphics-object group" aria-label="Rect and Circle">
+        <div class="html-button level-3" role="graphics-symbol img" aria-pressed="false">5
+          Rect
+        </div>
+        <div class="html-button level-3" role="graphics-symbol img" aria-pressed="false">7
+          Circle
+        </div>
+      </div>
+      <div class="level-2" role="graphics-object group" aria-label="Path and Text">
+        <div class="html-button level-3" role="graphics-symbol img" aria-pressed="false">1
+          Path
+        </div>
+        <div class="html-button level-3" role="graphics-symbol img" aria-pressed="false">3
+          Text
+        </div>
+      </div>
+    </div>
+    <script>
+    </script>
+  </body>
+
+</html>
