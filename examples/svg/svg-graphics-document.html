@@ -73,7 +73,7 @@
       This is a test using the graphics module specification, with role fallbacks, for an SVG structure. The root SVG uses role="graphics-document region", g elements use role="graphics-object group", and child elements use role="graphics-symbol img". No assistance has been given to a screen reader for navigation (such as via tabindex or JavaScript). We expect that the roles + aria should be sufficient.
     </p>
     <ul>Expectations:
-      <li>We expect that a screen reader (SR) can navigate to each element using a keyboard.</li>
+      <li>We expect that a screen reader (SR) can navigate to each element with a role and aria-label using a keyboard (SVG, g, and all SVG primitives).</li>
       <li>We expect that a SR will announce the aria-label correctly.</li>
       <li>We expect that different SVG primitives (rect, circle, path, text) will be consistent with each other based on
         previous expectations.</li>
