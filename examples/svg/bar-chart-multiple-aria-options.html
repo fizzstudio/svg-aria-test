@@ -12,7 +12,7 @@
     }
 
     code {
-      font-family: 'Consolas', 'Andale Mono', 'Lucida Sans Typewriter', 'Courier New', 'Roboto Mono', Courier, monospace;
+      font-family: "Consolas", "Andale Mono", "Lucida Sans Typewriter", "Courier New", "Roboto Mono", Courier, monospace;
       font-weight: normal;
       font-variant-ligatures: none;
     }
@@ -61,6 +61,10 @@
     .chart-element:focus {
       outline: .02rem solid #f00;
     }
+
+    .centered {
+      text-anchor: middle;
+    }
   </style>
 </head>
 
@@ -68,6 +72,9 @@
   <h1>Radio-input-like aria on svg elements: Graphics-document</h1>
   <p>
     There are times when SVG based charts, graphs, or graphics may operate in a similar fashion to input type=radio elements. These elements can be pressed and selected and will provide screen-reader feedback. The core test here is to determine whether aria-pressed and role=button can be used effectively on an SVG primitive.
+  </p>
+  <p>
+    This test will use the following structure: role=region for the SVG, role=group (with aria-labels for testing) on g elements, and role=button for the child elements. More testing should be done across different structures with a role=button child, but that is outside the scope of this test environment.
   </p>
   <h2>SVG Bar Chart with toggleable elements</h2>
   <p>
@@ -91,31 +98,32 @@
   </ul>
   <h3>Interaction Instructions</h3>
   <p>
-    Move into the chart using TAB (or a screen reader) and then press ENTER on an element.
+    Move into the chart using TAB (or a screen reader) and then press SPACEBAR on an element.
   </p>
   <div>
-    <svg viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" class="level-1" role="graphics-document document"
-      aria-labelledby="h">
+    <svg viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" class="level-1" role="region"
+      aria-labelledby="title subtitle">
       <!--  Origin is uppper left instead of bottom left  -->
       <!--  Chart name  -->
-      <text x="40" y="10" id="h">Interactive, Grouped Elements that can Load Data</text>
-      <g class="chart-element level-2" role="graphics-object group" aria-label="Rect and Circle">
+      <text x="50%" y="5" id="title" class="centered">Interactive SVG Interface</text>
+      <text x="50%" y="10" id="subtitle" class="centered">Select One to Load Data Fragments</text>
+      <g class="chart-element level-2" role="group" aria-label="Rect and Circle">
         <text x="40" y="45" text-anchor="middle" id="b01v" aria-hidden="true">5</text>
         <rect x="30" y="50" width="20" height="50" class="chart-element level-3" tabindex="0" role="button"
-          aria-pressed='false' aria-labelledby="b01v b01t" />
+          aria-pressed="false" aria-labelledby="b01v b01t" />
         <text x="40" y="105" text-anchor="middle" id="b01t" aria-hidden="true">Rect</text>
         <text x="70" y="25" text-anchor="middle" id="b02v" aria-hidden="true">7</text>
-        <circle cx="70" cy="40" r="10" class="chart-element level-3" tabindex="0" role="button" aria-pressed='false'
+        <circle cx="70" cy="40" r="10" class="chart-element level-3" tabindex="0" role="button" aria-pressed="false"
           aria-labelledby="b02v b02t" />
         <text x="70" y="105" text-anchor="middle" id="b02t" aria-hidden="true">Circle</text>
       </g>
-      <g class="chart-element level-2" role="graphics-object group" aria-label="Path and Text">
+      <g class="chart-element level-2" role="group" aria-label="Path and Text">
         <text x="100" y="85" text-anchor="middle" id="b03v" aria-hidden="true">1</text>
         <path d="M90,90 L110,90 L110,100 L90,100 Z" class="chart-element level-3" tabindex="0" role="button"
-          aria-pressed='false' aria-labelledby="b03v b03t" />
+          aria-pressed="false" aria-labelledby="b03v b03t" />
         <text x="100" y="105" text-anchor="middle" id="b03t" aria-hidden="true">Path</text>
         <text x="130" y="65" text-anchor="middle" id="b04v" aria-hidden="true">3</text>
-        <text x="120" y="70" class="chart-element level-3" tabindex="0" role="button" aria-pressed='false'
+        <text x="120" y="70" class="chart-element level-3" tabindex="0" role="button" aria-pressed="false"
           aria-labelledby="b04v b04t">Decorative
           Text</text>
         <text x="130" y="105" text-anchor="middle" id="b04t" aria-hidden="true">Text</text>
@@ -135,20 +143,22 @@
     The following example while somewhat terrible (for not using radio input/button elements), is given as an example of
     whether or not the SVG will perform the same.
   </p>
-  <div class='level-1' role='graphics-document document'>
-    <div class='level-2' role='graphics-object group' aria-label="Rect and Circle">
-      <div class='html-button level-3' role='button' tabindex="0" aria-pressed='false'>5
+  <div class="level-1" role="region" aria-labelledby="html-title html-subtitle">
+    <p aria-hidden="true" id="html-title">Interactive SVG Interface</p>
+    <p aria-hidden="true" id="html-subtitle">Select One to Load Data Fragments</p>
+    <div class="level-2" role="group" aria-label="Rect and Circle">
+      <div class="html-button level-3" role="button" tabindex="0" aria-pressed="false">5
         Rect
       </div>
-      <div class='html-button level-3' role='button' tabindex="0" aria-pressed='false'>7
+      <div class="html-button level-3" role="button" tabindex="0" aria-pressed="false">7
         Circle
       </div>
     </div>
-    <div class='level-2' role='graphics-object group' aria-label="Path and Text">
-      <div class='html-button level-3' role='button' tabindex="0" aria-pressed='false'>1
+    <div class="level-2" role="group" aria-label="Path and Text">
+      <div class="html-button level-3" role="button" tabindex="0" aria-pressed="false">1
         Path
       </div>
-      <div class='html-button level-3' role='button' tabindex="0" aria-pressed='false'>3
+      <div class="html-button level-3" role="button" tabindex="0" aria-pressed="false">3
         Text
       </div>
     </div>
@@ -157,39 +167,39 @@
   <p>
     When elements are selected, content will be rendered below:
   </p>
-  <p id='output' aria-live="polite"></p>
+  <p id="output" aria-live="polite"></p>
   <script>
-    const interactives = [...document.querySelectorAll('.level-3')];
+    const interactives = [...document.querySelectorAll(".level-3")];
     function registerClick(e) {
       const target = this
       registerData(this);
     }
     function onKeyDown(event) {
-      if (event.key === 'Space' || event.key === ' ') {
+      if (event.key === "Space" || event.key === " ") {
         event.preventDefault()
         const target = this
         registerData(this);
       }
     }
     function registerData(targetEl) {
-      const attr = targetEl.getAttribute('aria-pressed')
-      if (attr === 'false') {
+      const attr = targetEl.getAttribute("aria-pressed")
+      if (attr === "false") {
         interactives.forEach(el => {
-          el.setAttribute('aria-pressed', 'false')
-          el.classList.remove('pressed')
+          el.setAttribute("aria-pressed", "false")
+          el.classList.remove("pressed")
         })
-        targetEl.classList.add('pressed')
-        targetEl.setAttribute('aria-pressed', 'true')
-        document.getElementById('output').innerText = Math.round(Math.random() * 99) + ' file fragments have been loaded from our records.'
+        targetEl.classList.add("pressed")
+        targetEl.setAttribute("aria-pressed", "true")
+        document.getElementById("output").innerText = Math.round(Math.random() * 99) + " file fragments have been loaded from our records."
       } else {
-        targetEl.classList.remove('pressed')
-        targetEl.setAttribute('aria-pressed', 'false')
-        document.getElementById('output').innerText = 'Records are now closed.'
+        targetEl.classList.remove("pressed")
+        targetEl.setAttribute("aria-pressed", "false")
+        document.getElementById("output").innerText = "Records are now closed."
       }
     }
     interactives.forEach(el => {
-      el.addEventListener('click', registerClick);
-      el.addEventListener('keydown', onKeyDown);
+      el.addEventListener("click", registerClick);
+      el.addEventListener("keydown", onKeyDown);
     });
   </script>
 </body>
