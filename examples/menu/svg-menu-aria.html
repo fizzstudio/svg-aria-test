@@ -28,6 +28,7 @@
         padding: .8rem;
         margin: .45rem 0;
         border: .1rem solid black;
+        position: relative;
       }
 
       line {
@@ -65,6 +66,49 @@
       .centered {
         text-anchor: middle;
       }
+
+      .vspan-rect {
+        display: inline-block;
+        width: 45px;
+        height: 30px;
+        border: 1px solid black;
+        background-color: white;
+      }
+
+      .vspan-circle {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+        background-color: white;
+        border-radius: 15px;
+      }
+
+      .vspan-path1 {
+        display: inline-block;
+        background-color: transparent;
+        width: 0; 
+        height: 0; 
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        
+        /* border-right: 35px solid transparent; */
+        border-bottom: 30px solid black;
+      }
+      .vspan-path2 {
+        display: inline-block;
+        position: absolute;
+        background-color: transparent;
+        width: 0; 
+        height: 0; 
+        top: 14px;
+        left: 14px;
+        border-left: 13px solid transparent;
+        border-right: 13px solid transparent;
+        
+        /* border-right: 35px solid transparent; */
+        border-bottom: 27px solid white;
+      }
     </style>
   </head>
 
@@ -75,17 +119,24 @@
       function, in a similar fashion as File > Save, Edit > Undo, or Options > Sort Ascending. These elements can be pressed and selected and will provide screen-reader feedback. The core test here is to determine whether aria-expanded, aria-haspopup, and role=menu/menuitem/menuitemcheckbox can be used effectively on an SVG primitive.
     </p>
     <p>
-      This test will use role=menu on the parent SVG, role=menuitem on a "parent" rect, circle, path, or text element. When the menuitem is expanded, a g element will appear adjacent to it with role=menu (this is its submenu). This submenu will contain elements that have role=menuitemcheckbox. When these menuitems are checked, they will 
+      This test will use role=menu on the parent SVG, role=menuitem on a "parent" rect, circle, path, or text element. When the menuitem is expanded, a g element will appear adjacent to it with role=menu (this is its submenu). This submenu will contain elements that have role=menuitemcheckbox. When these menuitems are checked, the elements will be visually darkened to indicate their status.
     </p>
     <ul>Expectations:
       <li>We expect that a screen reader (SR) can navigate to each element with a role and aria-label using a keyboard (SVG, g, and all SVG primitives).</li>
-      <li>We expect that a SR will announce the aria-label correctly.</li>
+      <li>We expect that the visual focus indicator moves to the correct element and has the correct bounding dimensions.</li>
+      <li>We expect that the visual focus indicator will remain in view at all times and may even adjust the scroll position of the page while navigating.</li>
+      <li>The SVG is labelled by the chart's title and subtitle (these should be read as a single text when navigating to the root element).</li>
+      <li>The title and subtitle are hidden from a screen reader because they are announced on their parent element instead. These elements should not be read out loud.</li>
+      <li>The elements are grouped in pairs. The screen reader should be able to separately navigate to the group before navigating to each pair.</li>
+      <li>Each primitive (rect, circle, path, text) should be accessible by a screen reader and read the number and label for that element.</li>
+      <li>We expect that a SR will announce the aria-label correctly for each element, followed by its role.</li>
+      <li>The aria label should announce the number, followed by the type of primitive (eg "7 Rect"), even though the text may be displayed viusally in a different order. This is designed intentionally to ensure that the ARIA is working correctly.</li>
+      <li>We expect that different SVG primitives (rect, circle, path, text) will be consistent with each other based on previous expectations.</li>
+      <li>We expect that the SVG elements will provide the same experience as the HTML elements (below the SVG space).</li>
       <li>We expect that a SR will be able to expand a menu element open or closed.</li>
       <li>We expect that a SR will announce the expanded state correctly when navigated to.</li>
       <li>We expect that a SR will announce the expanded state correctly when changed.</li>
-      <li>We expect that when an option has been selected, the SR will give</li>
-      <li>We expect that different SVG primitives (rect, circle, path, text) will be consistent with each other based on previous expectations.</li>
-      <li>We expect that the SVG elements will provide the same experience as the HTML elements (below the SVG space).</li>
+      <li>We expect that when an option has been selected, the SR will give feedback.</li>
     </ul>
     <h3>Interaction Instructions</h3>
     <p>
@@ -134,19 +185,27 @@
       <p aria-hidden="true" id="html-title">Interactive SVG Interface</p>
       <p aria-hidden="true" id="html-subtitle">Select One to Load Data Fragments</p>
       <div class="level-2" role="group" aria-label="Rect and Circle">
-        <div class="html-button level-3" role="button" tabindex="0" aria-pressed="false">5
-          Rect
+        <div class="html-button level-3">
+          <span class="visual-span vspan-rect" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlRect2 htmlRect1"></span>
+          <span id="htmlRect1" aria-hidden="true">Rect</span>
+          <span id="htmlRect2" aria-hidden="true">5</span>
         </div>
-        <div class="html-button level-3" role="button" tabindex="0" aria-pressed="false">7
-          Circle
+        <div class="html-button level-3">
+          <span class="visual-span vspan-circle" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlCircle2 htmlCircle1"></span>
+          <span id="htmlCircle1" aria-hidden="true">Circle</span>
+          <span id="htmlCircle2" aria-hidden="true">7</span>
         </div>
       </div>
       <div class="level-2" role="group" aria-label="Path and Text">
-        <div class="html-button level-3" role="button" tabindex="0" aria-pressed="false">1
-          Path
-        </div>
-        <div class="html-button level-3" role="button" tabindex="0" aria-pressed="false">3
-          Text
+        <div class="html-button level-3">
+          <span class="visual-span vspan-path1" aria-hidden="true"></span>
+          <span class="visual-span vspan-path2" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlPath2 htmlPath1"></span>
+          <span id="htmlPath1" aria-hidden="true">Path</span>
+          <span id="htmlPath2" aria-hidden="true">1</span>
+        </div><div class="html-button level-3">
+          <span class="visual-span vspan-text" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlText2 htmlText1">decorative text</span>
+          <span id="htmlText1" aria-hidden="true">Text</span>
+          <span id="htmlText2" aria-hidden="true">3</span>
         </div>
       </div>
     </div>
