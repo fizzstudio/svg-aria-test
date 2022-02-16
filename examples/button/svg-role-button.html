@@ -185,8 +185,8 @@
         <text x="130" y="105" text-anchor="middle" id="b04t" aria-hidden="true">Text</text>
       </g>
       <text x="10" y="113" class="live-svg-text">When elements are selected, content will be rendered below:</text>
-      <g id="svg-output" aria-live="polite" transform="translate(10, 117)">
-        <text class="live-svg-text"></text>
+      <g aria-live="polite" transform="translate(10, 117)">
+        <text id="svg-output" class="live-svg-text"></text>
       </g>
       <defs aria-hidden="true">
         <!--   http://iros.github.io/patternfills/sample_svg.html   -->
@@ -251,7 +251,8 @@
     }
     function registerData(targetEl) {
       const attr = targetEl.getAttribute("aria-pressed")
-      console.log(targetEl)
+      const targetingHTML = targetEl.tagName === 'div' || targetEl.tagName === 'DIV'
+      let newText ="Records are now closed."
       if (attr === "false") {
         interactives.forEach(el => {
           el.setAttribute("aria-pressed", "false")
@@ -259,12 +260,12 @@
         })
         targetEl.classList.add("pressed")
         targetEl.setAttribute("aria-pressed", "true")
-        document.getElementById("output").innerText = Math.round(Math.random() * 99) + " file fragments have been loaded from our records."
+        newText = Math.round(Math.random() * 99) + " file fragments have been loaded from our records."
       } else {
         targetEl.classList.remove("pressed")
         targetEl.setAttribute("aria-pressed", "false")
-        document.getElementById("output").innerText = "Records are now closed."
       }
+      document.getElementById(`${targetingHTML ? '' : 'svg-'}output`)[targetingHTML ? "innerText" : "textContent"] = newText;
     }
     interactives.forEach(el => {
       el.addEventListener("click", registerClick);
