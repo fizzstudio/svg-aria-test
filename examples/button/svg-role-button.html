@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Radio-input-like aria on svg elements</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      line-height: 1.4;
+    }
+
+    code {
+      font-family: "Consolas", "Andale Mono", "Lucida Sans Typewriter", "Courier New", "Roboto Mono", Courier, monospace;
+      font-weight: normal;
+      font-variant-ligatures: none;
+    }
+
+    svg {
+      /*   outline: 1px dotted #f00; */
+      max-width: 100vw;
+      max-height: 90vh;
+    }
+
+    .html-button {
+      max-width: 20vw;
+      padding: .8rem;
+      margin: .45rem 0;
+      border: .1rem solid black;
+      position: relative;
+    }
+
+    line {
+      stroke-width: .01rem;
+      stroke: currentColor;
+    }
+
+    .level-3 {
+      fill: url(#crosshatch) #000;
+      stroke-width: .01rem;
+      stroke: #000;
+    }
+
+    text {
+      font: inherit;
+      font-size: 4px;
+      /* font-size: inherit; */
+      /* outline: .01vw dotted #0f0;*/
+    }
+
+    .live-svg-text {
+      font-size: 3px;
+    }
+
+    .pressed {
+      fill: #000000;
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    :focus {
+      outline: .45rem solid #f00;
+    }
+
+    .chart-element:focus {
+      outline: .02rem solid #f00;
+    }
+
+    .centered {
+      text-anchor: middle;
+    }
+
+    .vspan-rect {
+      display: inline-block;
+      width: 45px;
+      height: 30px;
+      border: 1px solid black;
+      background-color: white;
+    }
+
+    .vspan-circle {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 1px solid black;
+      background-color: white;
+      border-radius: 15px;
+    }
+
+    .vspan-path1 {
+      display: inline-block;
+      background-color: transparent;
+      width: 0; 
+      height: 0; 
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      
+      /* border-right: 35px solid transparent; */
+      border-bottom: 30px solid black;
+    }
+    .vspan-path2 {
+      display: inline-block;
+      position: absolute;
+      background-color: transparent;
+      width: 0; 
+      height: 0; 
+      top: 15px;
+      left: 14px;
+      border-left: 13px solid transparent;
+      border-right: 13px solid transparent;
+      
+      /* border-right: 35px solid transparent; */
+      border-bottom: 27px solid white;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>Radio-input-like aria on svg elements</h1>
+  <p>
+    There are times when SVG based charts, graphs, or graphics may operate in a similar fashion to input type=radio elements. These elements can be pressed and selected and will provide screen-reader feedback. The core test here is to determine whether aria-pressed and role=button can be used effectively on an SVG primitive.
+  </p>
+  <p>
+    This test will use the following structure: role=region for the SVG, role=group (with aria-labels for testing) on g elements, and role=button for the child elements. More testing should be done across different structures with a role=button child, but that is outside the scope of this test environment.
+  </p>
+  <h2>SVG interface with toggleable elements</h2>
+  <p>
+    There are times when SVG charts or graphics are interactive and their internal elements can perform some kind of
+    function, such as selecting options for filtering a dataset or displaying other information elsewhere on a page. In
+    this example chart below, selecting an element will cause a line of text to appear at the very bottom of this page.
+    This element simply represents that the interactive chart did something (what exactly is irrelevant in this demo).
+    The
+    element at the bottom of the page is an aria live element which will read out its contents when changed.
+  </p>
+  <ul>Expectations:
+    <li>We expect that a screen reader (SR) can navigate to each element with a role and aria-label using a keyboard (SVG, g, and all SVG primitives).</li>
+    <li>We expect that the visual focus indicator moves to the correct element and has the correct bounding dimensions.</li>
+    <li>We expect that the visual focus indicator will remain in view at all times and may even adjust the scroll position of the page while navigating.</li>
+    <li>The SVG is labelled by the chart's title and subtitle (these should be read as a single text when navigating to the root element).</li>
+    <li>The title and subtitle are hidden from a screen reader because they are announced on their parent element instead. These elements should not be read out loud.</li>
+    <li>The elements are grouped in pairs. The screen reader should be able to separately navigate to the group before navigating to each pair.</li>
+    <li>Each primitive (rect, circle, path, text) should be accessible by a screen reader and read the number and label for that element.</li>
+    <li>We expect that a SR will announce the aria-label correctly for each element, followed by its role.</li>
+    <li>The aria label should announce the number, followed by the type of primitive (eg "7 Rect"), even though the text may be displayed viusally in a different order. This is designed intentionally to ensure that the ARIA is working correctly.</li>
+    <li>We expect that different SVG primitives (rect, circle, path, text) will be consistent with each other based on previous expectations.</li>
+    <li>We expect that the SVG elements will provide the same experience as the HTML elements (below the SVG space).</li>
+    <li>We expect that if the main roles are not used, the fallback roles will be (if they are enabled). We are not sure how to design for this initially, but are mentioning it as important.</li>
+    <li>We expect that a SR will be able to toggle the element on or off.</li>
+    <li>We expect that a SR will announce the toggle state correctly when navigated to.</li>
+    <li>We expect that a SR will announce the toggle state correctly when changed.</li>
+    <li>We expect that the aria live region for each test type (HTML and SVG) will correctly announce that something has happened with each toggle.</li>
+  </ul>
+  <h3>Interaction Instructions</h3>
+  <p>
+    Move into the chart using TAB (or a screen reader) and then press SPACEBAR on an element.
+  </p>
+  <div>
+    <svg viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" class="level-1" role="region"
+      aria-labelledby="title subtitle">
+      <!--  Origin is uppper left instead of bottom left  -->
+      <!--  Chart name  -->
+      <text x="50%" y="5" id="title" class="centered">Interactive SVG Interface</text>
+      <text x="50%" y="10" id="subtitle" class="centered">Select One to Load Data Fragments</text>
+      <g class="chart-element level-2" role="group" aria-label="Rect and Circle">
+        <text x="40" y="45" text-anchor="middle" id="b01v" aria-hidden="true">5</text>
+        <rect x="30" y="50" width="20" height="50" class="chart-element level-3" tabindex="0" role="button"
+          aria-pressed="false" aria-labelledby="b01v b01t" />
+        <text x="40" y="105" text-anchor="middle" id="b01t" aria-hidden="true">Rect</text>
+        <text x="70" y="25" text-anchor="middle" id="b02v" aria-hidden="true">7</text>
+        <circle cx="70" cy="40" r="10" class="chart-element level-3" tabindex="0" role="button" aria-pressed="false"
+          aria-labelledby="b02v b02t" />
+        <text x="70" y="105" text-anchor="middle" id="b02t" aria-hidden="true">Circle</text>
+      </g>
+      <g class="chart-element level-2" role="group" aria-label="Path and Text">
+        <text x="100" y="85" text-anchor="middle" id="b03v" aria-hidden="true">1</text>
+        <path d="M100,88 L110,100 L90,100 Z" class="chart-element level-3" tabindex="0" role="button"
+          aria-pressed="false" aria-labelledby="b03v b03t" />
+        <text x="100" y="105" text-anchor="middle" id="b03t" aria-hidden="true">Path</text>
+        <text x="130" y="65" text-anchor="middle" id="b04v" aria-hidden="true">3</text>
+        <text x="115" y="70" class="chart-element level-3" tabindex="0" role="button" aria-pressed="false"
+          aria-labelledby="b04v b04t">Decorative
+          Text</text>
+        <text x="130" y="105" text-anchor="middle" id="b04t" aria-hidden="true">Text</text>
+      </g>
+      <text x="10" y="113" class="live-svg-text">When elements are selected, content will be rendered below:</text>
+      <g aria-live="polite" transform="translate(10, 117)">
+        <text id="svg-output" class="live-svg-text"></text>
+      </g>
+      <defs aria-hidden="true">
+        <!--   http://iros.github.io/patternfills/sample_svg.html   -->
+        <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="1" height="1">
+          <image
+            xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg=="
+            x="0" y="0" width="1" height="1"></image>
+        </pattern>
+      </defs>
+    </svg>
+  </div>
+  <h2>html examples with toggleable state</h2>
+  <p>
+    The following example while somewhat terrible (for not using radio input/button elements), is given as an example of
+    whether or not the SVG will perform the same.
+  </p>
+  <div class="level-1" role="region" aria-labelledby="html-title html-subtitle">
+    <p aria-hidden="true" id="html-title">Interactive SVG Interface</p>
+    <p aria-hidden="true" id="html-subtitle">Select One to Load Data Fragments</p>
+    <div class="level-2" role="group" aria-label="Rect and Circle">
+      <div class="html-button level-3">
+        <span class="visual-span vspan-rect" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlRect2 htmlRect1"></span>
+        <span id="htmlRect1" aria-hidden="true">Rect</span>
+        <span id="htmlRect2" aria-hidden="true">5</span>
+      </div>
+      <div class="html-button level-3">
+        <span class="visual-span vspan-circle" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlCircle2 htmlCircle1"></span>
+        <span id="htmlCircle1" aria-hidden="true">Circle</span>
+        <span id="htmlCircle2" aria-hidden="true">7</span>
+      </div>
+    </div>
+    <div class="level-2" role="group" aria-label="Path and Text">
+      <div class="html-button level-3">
+        <span class="visual-span vspan-path1" aria-hidden="true"></span>
+        <span class="visual-span vspan-path2" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlPath2 htmlPath1"></span>
+        <span id="htmlPath1" aria-hidden="true">Path</span>
+        <span id="htmlPath2" aria-hidden="true">1</span>
+      </div><div class="html-button level-3">
+        <span class="visual-span vspan-text" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlText2 htmlText1">decorative text</span>
+        <span id="htmlText1" aria-hidden="true">Text</span>
+        <span id="htmlText2" aria-hidden="true">3</span>
+      </div>
+    </div>
+  </div>
+  <h2>Output area</h2>
+  <p>
+    When elements are selected, content will be rendered below:
+  </p>
+  <p id="output" aria-live="polite"></p>
+  <script>
+    const interactives = [...document.querySelectorAll(".level-3")];
+    function registerClick(e) {
+      const target = this
+      registerData(this);
+    }
+    function onKeyDown(event) {
+      if (event.key === "Space" || event.key === " ") {
+        event.preventDefault()
+        const target = this
+        registerData(this);
+      }
+    }
+    function registerData(targetEl) {
+      const attr = targetEl.getAttribute("aria-pressed")
+      const targetingHTML = targetEl.tagName === 'div' || targetEl.tagName === 'DIV'
+      let newText ="Records are now closed."
+      if (attr === "false") {
+        interactives.forEach(el => {
+          el.setAttribute("aria-pressed", "false")
+          el.classList.remove("pressed")
+        })
+        targetEl.classList.add("pressed")
+        targetEl.setAttribute("aria-pressed", "true")
+        newText = Math.round(Math.random() * 99) + " file fragments have been loaded from our records."
+      } else {
+        targetEl.classList.remove("pressed")
+        targetEl.setAttribute("aria-pressed", "false")
+      }
+      document.getElementById(`${targetingHTML ? '' : 'svg-'}output`)[targetingHTML ? "innerText" : "textContent"] = newText;
+    }
+    interactives.forEach(el => {
+      el.addEventListener("click", registerClick);
+      el.addEventListener("keydown", onKeyDown);
+    });
+  </script>
+</body>
+
+</html>
