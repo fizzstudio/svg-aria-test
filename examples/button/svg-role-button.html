@@ -205,25 +205,25 @@
     <p aria-hidden="true" id="html-title">Interactive SVG Interface</p>
     <p aria-hidden="true" id="html-subtitle">Select One to Load Data Fragments</p>
     <div class="level-2" role="group" aria-label="Rect and Circle">
-      <div class="html-button level-3">
-        <span class="visual-span vspan-rect" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlRect2 htmlRect1"></span>
+      <div class="html-button">
+        <span class="visual-span vspan-rect level-3" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlRect2 htmlRect1"></span>
         <span id="htmlRect1" aria-hidden="true">Rect</span>
         <span id="htmlRect2" aria-hidden="true">5</span>
       </div>
-      <div class="html-button level-3">
-        <span class="visual-span vspan-circle" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlCircle2 htmlCircle1"></span>
+      <div class="html-button">
+        <span class="visual-span vspan-circle level-3" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlCircle2 htmlCircle1"></span>
         <span id="htmlCircle1" aria-hidden="true">Circle</span>
         <span id="htmlCircle2" aria-hidden="true">7</span>
       </div>
     </div>
     <div class="level-2" role="group" aria-label="Path and Text">
-      <div class="html-button level-3">
+      <div class="html-button">
         <span class="visual-span vspan-path1" aria-hidden="true"></span>
-        <span class="visual-span vspan-path2" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlPath2 htmlPath1"></span>
+        <span class="visual-span vspan-path2 level-3" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlPath2 htmlPath1"></span>
         <span id="htmlPath1" aria-hidden="true">Path</span>
         <span id="htmlPath2" aria-hidden="true">1</span>
-      </div><div class="html-button level-3">
-        <span class="visual-span vspan-text" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlText2 htmlText1">decorative text</span>
+      </div><div class="html-button">
+        <span class="visual-span vspan-text level-3" role="button" tabindex="0" aria-pressed="false" aria-labelledby="htmlText2 htmlText1">decorative text</span>
         <span id="htmlText1" aria-hidden="true">Text</span>
         <span id="htmlText2" aria-hidden="true">3</span>
       </div>
@@ -249,18 +249,21 @@
     }
     function registerData(targetEl) {
       const attr = targetEl.getAttribute("aria-pressed")
-      const targetingHTML = targetEl.tagName === 'div' || targetEl.tagName === 'DIV'
+      const targetingHTML = targetEl.tagName === 'span' || targetEl.tagName === 'SPAN'
+      const styleEl = !targetingHTML ? targetEl : targetEl.parentNode
       let newText ="Records are now closed."
+      interactives.forEach(el => {
+        el.setAttribute("aria-pressed", "false")
+        const tHTML = el.tagName === 'span' || el.tagName === 'SPAN'
+        const sEl = !tHTML ? el : el.parentNode
+        sEl.classList.remove("pressed")
+      })
       if (attr === "false") {
-        interactives.forEach(el => {
-          el.setAttribute("aria-pressed", "false")
-          el.classList.remove("pressed")
-        })
-        targetEl.classList.add("pressed")
+        styleEl.classList.add("pressed")
         targetEl.setAttribute("aria-pressed", "true")
         newText = Math.round(Math.random() * 99) + " file fragments have been loaded from our records."
       } else {
-        targetEl.classList.remove("pressed")
+        styleEl.classList.remove("pressed")
         targetEl.setAttribute("aria-pressed", "false")
       }
       document.getElementById(`${targetingHTML ? '' : 'svg-'}output`)[targetingHTML ? "innerText" : "textContent"] = newText;
