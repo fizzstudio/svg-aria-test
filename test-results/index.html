@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SVG Accessibility Test Matrix</title>
+
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>">
+  <script type="module" src="./script/main.js"></script>
+  <link rel="stylesheet" href="./style/svg-a11y-style.css">
+
+</head>
+
+<body>
+  <header>
+    <h1>SVG Accessibility Test Matrix</h1>
+  </header>
+  <main>
+    <p>This document compares the capabilities of SVG in popular screen reader and browser combinations. The tests represented cover basic SVG support with screen readers (a kind of <i>Assistive Technology</i> or <i>AT</i>), and comparison and contrast with ARIA behavior in SVG vs equivalent structures in HTML.</p>
+
+    <p>The goal is to identify instances where SVG differs from HTML, or from the behavior specified in the relevant SVG or WAI-ARIA specifications. Once issues are identified, we can determine whether the problem originates in the screen reader, the browser, the operating systems accessibility APIs, or some combination.</p>
+
+    <p>Once the issue and the responsible software is identified, we can work to get that behavior changed.</p>
+
+    <p>In some cases, the behavior may work correctly as directed in the relevant specification, but may lead to suboptimal authoring or reading experiences. In other cases, the behavior may be underspecified, and thus need better specification to provide interoperable authoring and reading experiences across all screen reader, browser, and operating systems.</p>
+
+    <h2 id="background">Background</h2>
+    <p>TODO: explain why consistent SVG behavior is needed. Talk about regression bugs.</p>
+
+    <h2 id="technical-note">Technical Note</h2>
+    <p>The tables in this document are dynamically generated from a JSON file, <a href="data/svg-a11y-tests.json">svg-a11y-tests.json</a>, which is a summary of the detailed issue reports. This JSON file is intended to provide up-to-date test results in a reader-friendly presentation, but requires that client-side JavaScript is enabled.</p>
+
+    <article>
+      <h2 id="implementations">Implementations</h2>
+      <p>In order to sample the most common and representative screen-reader, browser, and operating system combinations, we referenced the <a href="https://webaim.org/projects/screenreadersurvey9/#browsercombos">2021 WebAim Screen Reader Survey</a>. We selected a subset of combinations that balanced the reported frequency of combinations across all screen readers, browser engines, and operating systems.</p>
+
+      <p>Notably, we did not include <b>JAWS with Edge</b> or <b>JAWS with Firefox</b>, even though they are more commonly used than <b>Voiceover with Safari</b>. We reasoned that since Microsoft Edge uses the same underlying browser engine as Google Chrome, they would likely have the same behavior with screen readers. For budgetary reasons, we prioritized Voiceover with Safari on MacOS over JAWS with Firefox on Windows, since we wanted to have iOS represented.</p>
+
+      <p>Note: We felt it was especially important to show the results of Voiceover, since its behavior with SVG and ARIA conforms most closely to the specifications.</p>
+      
+      <section id="implementation_container">
+      </section>
+    </article>
+
+    <article>
+      <h2 id="browser-sr-test-results">Browser-Screen Reader Test Tesults</h2>
+      <p><b>Note:</b> These are placeholder test results, not real data, included only to show the different states of test results. Real data is the next phase.</p>
+      
+      <section id="browser_sr_container">
+      </section>
+    </article>
+
+    <!-- 
+    <section>
+      <h2 id="use-cases">Use Cases</h2>
+      <section id="use_case_container">
+      </section>
+    </section>
+    -->
+
+  </main>
+
+</body>
+
+</html>
