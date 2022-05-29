@@ -372,29 +372,13 @@
           styleEl.classList.remove("pressed")
           targetEl.setAttribute("aria-pressed", "false")
         }
-        function registerData(targetEl) {
-          const attr = targetEl.getAttribute('aria-pressed');
-          const targetingHTML = targetEl.tagName === 'div' || targetEl.tagName === 'DIV';
-          let newText = 'Records are now closed.';
-          if (attr === 'false') {
-            interactives.forEach(el => {
-              el.setAttribute('aria-pressed', 'false');
-              el.classList.remove('pressed');
-            });
-            targetEl.classList.add('pressed');
-            targetEl.setAttribute('aria-pressed', 'true');
-            newText = Math.round(Math.random() * 99) + ' file fragments have been loaded from our records.';
-          } else {
-            targetEl.classList.remove('pressed');
-            targetEl.setAttribute('aria-pressed', 'false');
-          }
-          document.getElementById(`${targetingHTML ? '' : 'svg-'}output`)[targetingHTML ? 'innerText' : 'textContent'] =
-            newText;
-        }
-        interactives.forEach(el => {
-          el.addEventListener('click', registerClick);
-          el.addEventListener('keydown', onKeyDown);
-        });
+        document.getElementById(`${targetingHTML ? '' : 'svg-'}output`)[targetingHTML ? 'innerText' : 'textContent'] = newText;
+      }
+      interactives.forEach(el => {
+        el.addEventListener('click', registerClick);
+        el.addEventListener('keydown', onKeyDown);
+      });
+
     </script>
   </body>
 </html>
