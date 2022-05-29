@@ -8,7 +8,7 @@ const TreeActions = {
   Previous: 'prev',
   Select: 'select',
   UpLevel: 'up'
-}
+};
 
 const Keys = {
   Backspace: 'Backspace',
@@ -25,7 +25,7 @@ const Keys = {
   Space: ' ',
   Tab: 'Tab',
   Up: 'ArrowUp'
-}
+};
 
 class Chart {
   constructor(chartEl, options = {}) {
@@ -33,7 +33,7 @@ class Chart {
     this.options = options;
     this.items = this.getProcessedTreeItems(chartEl);
     // maintain a flat list of currently "visible" items, starting with only top-level items
-    this.flatItemList = this.items.map((item) => (item));
+    this.flatItemList = this.items.map(item => item);
     this.activeIndex = 0;
     this.expandedItems = new WeakMap();
   }
@@ -44,10 +44,10 @@ class Chart {
     }
 
     const children = [];
-    item.children.forEach((child) => {
+    item.children.forEach(child => {
       children.push(child);
       if (child.children && this.expandedItems.get(child)) {
-        children.push([ ...this.getFlatChildren(child) ]);
+        children.push([...this.getFlatChildren(child)]);
       }
     });
 
@@ -68,12 +68,12 @@ class Chart {
     const allItems = [...rootEl.querySelectorAll('[role=treeitem]')];
     const items = [];
 
-    const removeItem = (item) => {
+    const removeItem = item => {
       const itemIndex = allItems.indexOf(item);
-      if(itemIndex > -1) {
+      if (itemIndex > -1) {
         allItems.splice(itemIndex, 1);
       }
-    }
+    };
 
     allItems.forEach((itemEl, index) => {
       const itemId = typeof level === 'string' ? `${level}-${index}` : `${index}`;
@@ -81,8 +81,8 @@ class Chart {
       console.log('adding item with id', itemId);
 
       // attach events
-      itemEl.addEventListener('click', (event) => this.onDataClick(event.target));
-      itemEl.addEventListener('keydown', (event) => this.onDataKeyDown(event, item));
+      itemEl.addEventListener('click', event => this.onDataClick(event.target));
+      itemEl.addEventListener('keydown', event => this.onDataKeyDown(event, item));
 
       // process children
       const children = [...itemEl.querySelectorAll('[role=treeitem]')];
@@ -90,7 +90,7 @@ class Chart {
         // start off with all items collapsed
         itemEl.setAttribute('aria-expanded', 'false');
         // remove children from allItems
-        children.forEach((childEl) => removeItem(childEl));
+        children.forEach(childEl => removeItem(childEl));
         // add children to item
         item.children = this.getProcessedTreeItems(itemEl, itemId);
       }
@@ -101,13 +101,13 @@ class Chart {
   }
 
   /*
-  * Get the type of action based on the key pressed
-  * returns an action in the TreeActions object
-  */
+   * Get the type of action based on the key pressed
+   * returns an action in the TreeActions object
+   */
   getTreeActionFromKey(event, treeitem, expanded, level) {
     const { key } = event;
 
-    switch(key) {
+    switch (key) {
       case Keys.Down:
         event.preventDefault();
         event.stopPropagation();
@@ -128,8 +128,7 @@ class Chart {
         event.stopPropagation();
         if (expanded) {
           return TreeActions.Close;
-        }
-        else if (level > 1) {
+        } else if (level > 1) {
           return TreeActions.UpLevel;
         }
         break;
@@ -150,7 +149,7 @@ class Chart {
 
   // get new active item index based TreeAction
   getUpdatedIndex(action) {
-    switch(action) {
+    switch (action) {
       case TreeActions.First:
         return 0;
       case TreeActions.Last:
@@ -169,7 +168,7 @@ class Chart {
         const itemID = this.flatItemList[this.activeIndex].id;
         if (itemID.length > 1) {
           const newID = itemID.slice(0, itemID.length - 2);
-          const newItem = this.flatItemList.find((item) => item.id === newID);
+          const newItem = this.flatItemList.find(item => item.id === newID);
           return this.flatItemList.indexOf(newItem);
         }
         break;

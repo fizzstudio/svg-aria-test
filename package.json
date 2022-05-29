@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "prettier-all-check": "prettier --config  ./.prettierrc --ignore ./.prettierignore --debug-check \"**/*.{js,jsx,ts,tsx,html,jsx,json,css,scss,md}\"",
+    "prettier-all": "prettier --config  ./.prettierrc --ignore ./.prettierignore --write \"**/*.{js,jsx,ts,tsx,html,jsx,json,css,scss,md}\""
+  },
+  "dependencies": {
+    "prettier": "^2.6.2"
+  }
+}

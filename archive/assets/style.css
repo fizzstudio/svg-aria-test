@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -28,7 +30,7 @@ body {
 .support-table th,
 .support-table td {
   border-left: 1px solid #666;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   text-align: left;
 }
 
@@ -58,14 +60,14 @@ body {
   background-color: #f1cdd3;
 }
 
-
 /* expectations block */
 dl {
   display: flex;
   flex-flow: row wrap;
 }
 
-dt, dd {
+dt,
+dd {
   padding: 0.2rem 0;
 }
 
@@ -74,9 +76,9 @@ dt {
   font-weight: bold;
 }
 
-  dt::after {
-    content: ":";
-  }
+dt::after {
+  content: ':';
+}
 
 dd {
   flex-basis: 70%;

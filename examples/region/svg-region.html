@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Svg elements: Region, Group, Img</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       body {
-        font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+          'Helvetica Neue', sans-serif;
         line-height: 1.4;
       }
 
       code {
-        font-family: "Consolas", "Andale Mono", "Lucida Sans Typewriter", "Courier New", "Roboto Mono", Courier, monospace;
+        font-family: 'Consolas', 'Andale Mono', 'Lucida Sans Typewriter', 'Courier New', 'Roboto Mono', Courier,
+          monospace;
         font-weight: normal;
         font-variant-ligatures: none;
       }
@@ -24,20 +26,20 @@
 
       .html-button {
         max-width: 20vw;
-        padding: .8rem;
-        margin: .45rem 0;
-        border: .1rem solid black;
+        padding: 0.8rem;
+        margin: 0.45rem 0;
+        border: 0.1rem solid black;
         position: relative;
       }
 
       line {
-        stroke-width: .01rem;
+        stroke-width: 0.01rem;
         stroke: currentColor;
       }
 
       .level-3 {
         fill: url(#crosshatch) #000;
-        stroke-width: .01rem;
+        stroke-width: 0.01rem;
         stroke: #000;
       }
 
@@ -55,11 +57,11 @@
       }
 
       :focus {
-        outline: .45rem solid #f00;
+        outline: 0.45rem solid #f00;
       }
 
       .chart-element:focus {
-        outline: .02rem solid #f00;
+        outline: 0.02rem solid #f00;
       }
 
       .centered {
@@ -86,11 +88,11 @@
       .vspan-path1 {
         display: inline-block;
         background-color: transparent;
-        width: 0; 
-        height: 0; 
+        width: 0;
+        height: 0;
         border-left: 15px solid transparent;
         border-right: 15px solid transparent;
-        
+
         /* border-right: 35px solid transparent; */
         border-bottom: 30px solid black;
       }
@@ -98,13 +100,13 @@
         display: inline-block;
         position: absolute;
         background-color: transparent;
-        width: 0; 
-        height: 0; 
+        width: 0;
+        height: 0;
         top: 15px;
         left: 14px;
         border-left: 13px solid transparent;
         border-right: 13px solid transparent;
-        
+
         /* border-right: 35px solid transparent; */
         border-bottom: 27px solid white;
       }
@@ -114,51 +116,95 @@
   <body>
     <h1>Svg elements: Region, Group, Img</h1>
     <p>
-      This is a test using the graphics module specification, with role fallbacks, for an SVG structure. The root SVG uses role="region", g elements use role="group", and child elements use role="img". No assistance has been given to a screen reader for navigation (such as via tabindex or JavaScript). We expect that the roles + aria should be sufficient.
+      This is a test using the graphics module specification, with role fallbacks, for an SVG structure. The root SVG
+      uses role="region", g elements use role="group", and child elements use role="img". No assistance has been given
+      to a screen reader for navigation (such as via tabindex or JavaScript). We expect that the roles + aria should be
+      sufficient.
     </p>
-    <ul>Expectations:
-      <li>We expect that a screen reader (SR) can navigate to each element with a role and aria-label using a keyboard (SVG, g, and all SVG primitives).</li>
-      <li>We expect that the visual focus indicator moves to the correct element and has the correct bounding dimensions.</li>
-      <li>We expect that the visual focus indicator will remain in view at all times and may even adjust the scroll position of the page while navigating.</li>
-      <li>The SVG is labelled by the chart's title and subtitle (these should be read as a single text when navigating to the root element).</li>
-      <li>The title and subtitle are hidden from a screen reader because they are announced on their parent element instead. These elements should not be read out loud.</li>
-      <li>The elements are grouped in pairs. The screen reader should be able to separately navigate to the group before navigating to each pair.</li>
-      <li>Each primitive (rect, circle, path, text) should be accessible by a screen reader and read the number and label for that element.</li>
+    <ul>
+      Expectations:
+      <li>
+        We expect that a screen reader (SR) can navigate to each element with a role and aria-label using a keyboard
+        (SVG, g, and all SVG primitives).
+      </li>
+      <li>
+        We expect that the visual focus indicator moves to the correct element and has the correct bounding dimensions.
+      </li>
+      <li>
+        We expect that the visual focus indicator will remain in view at all times and may even adjust the scroll
+        position of the page while navigating.
+      </li>
+      <li>
+        The SVG is labelled by the chart's title and subtitle (these should be read as a single text when navigating to
+        the root element).
+      </li>
+      <li>
+        The title and subtitle are hidden from a screen reader because they are announced on their parent element
+        instead. These elements should not be read out loud.
+      </li>
+      <li>
+        The elements are grouped in pairs. The screen reader should be able to separately navigate to the group before
+        navigating to each pair.
+      </li>
+      <li>
+        Each primitive (rect, circle, path, text) should be accessible by a screen reader and read the number and label
+        for that element.
+      </li>
       <li>We expect that a SR will announce the aria-label correctly for each element, followed by its role.</li>
-      <li>The aria label should announce the number, followed by the type of primitive (eg "7 Rect"), even though the text may be displayed viusally in a different order. This is designed intentionally to ensure that the ARIA is working correctly.</li>
-      <li>We expect that different SVG primitives (rect, circle, path, text) will be consistent with each other based on
-        previous expectations.</li>
-      <li>We expect that the SVG elements will provide the same experience as the HTML elements (below the SVG space).
+      <li>
+        The aria label should announce the number, followed by the type of primitive (eg "7 Rect"), even though the text
+        may be displayed viusally in a different order. This is designed intentionally to ensure that the ARIA is
+        working correctly.
+      </li>
+      <li>
+        We expect that different SVG primitives (rect, circle, path, text) will be consistent with each other based on
+        previous expectations.
+      </li>
+      <li>
+        We expect that the SVG elements will provide the same experience as the HTML elements (below the SVG space).
       </li>
     </ul>
     <h2>Interaction Instructions</h2>
     <p>
-      This chart must be tested using a screen reader only. Navigate as normally when using a screen reader. The elements are not interactive and no javascript is used.
+      This chart must be tested using a screen reader only. Navigate as normally when using a screen reader. The
+      elements are not interactive and no javascript is used.
     </p>
     <div>
-      <svg viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" class="level-1" role="region"
-        aria-labelledby="title subtitle">
+      <svg
+        viewBox="0 0 150 120"
+        xmlns="http://www.w3.org/2000/svg"
+        class="level-1"
+        role="region"
+        aria-labelledby="title subtitle"
+      >
         <text x="50%" y="5" id="title" class="centered" aria-hidden="true">A graphical display of data</text>
-        <text x="50%" y="10" id="subtitle" class="centered" aria-hidden="true">Each element contains different information</text>
+        <text x="50%" y="10" id="subtitle" class="centered" aria-hidden="true">
+          Each element contains different information
+        </text>
         <g class="chart-element level-2" role="group" aria-label="Rect and Circle">
           <text x="40" y="45" text-anchor="middle" id="b01v" aria-hidden="true">5</text>
-          <rect x="30" y="50" width="20" height="50" class="chart-element level-3" role="img"
-            aria-labelledby="b01v b01t" />
+          <rect
+            x="30"
+            y="50"
+            width="20"
+            height="50"
+            class="chart-element level-3"
+            role="img"
+            aria-labelledby="b01v b01t"
+          />
           <text x="40" y="105" text-anchor="middle" id="b01t" aria-hidden="true">Rect</text>
           <text x="70" y="25" text-anchor="middle" id="b02v" aria-hidden="true">7</text>
-          <circle cx="70" cy="40" r="10" class="chart-element level-3" role="img"
-            aria-labelledby="b02v b02t" />
+          <circle cx="70" cy="40" r="10" class="chart-element level-3" role="img" aria-labelledby="b02v b02t" />
           <text x="70" y="105" text-anchor="middle" id="b02t" aria-hidden="true">Circle</text>
         </g>
         <g class="chart-element level-2" role="group" aria-label="Path and Text">
           <text x="100" y="85" text-anchor="middle" id="b03v" aria-hidden="true">1</text>
-          <path d="M100,88 L110,100 L90,100 Z" class="chart-element level-3" role="img"
-            aria-labelledby="b03v b03t" />
+          <path d="M100,88 L110,100 L90,100 Z" class="chart-element level-3" role="img" aria-labelledby="b03v b03t" />
           <text x="100" y="105" text-anchor="middle" id="b03t" aria-hidden="true">Path</text>
           <text x="130" y="65" text-anchor="middle" id="b04v" aria-hidden="true">3</text>
-          <text x="115" y="70" class="chart-element level-3" role="img"
-            aria-labelledby="b04v b04t">Decorative
-            Text</text>
+          <text x="115" y="70" class="chart-element level-3" role="img" aria-labelledby="b04v b04t">
+            Decorative Text
+          </text>
           <text x="130" y="105" text-anchor="middle" id="b04t" aria-hidden="true">Text</text>
         </g>
         <defs aria-hidden="true">
@@ -166,16 +212,17 @@
           <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="1" height="1">
             <image
               xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg=="
-              x="0" y="0" width="1" height="1"></image>
+              x="0"
+              y="0"
+              width="1"
+              height="1"
+            ></image>
           </pattern>
         </defs>
       </svg>
     </div>
     <h2>html examples</h2>
-    <p>
-      The following HTML is given as an example of
-      whether or not the SVG will perform the same.
-    </p>
+    <p>The following HTML is given as an example of whether or not the SVG will perform the same.</p>
     <div class="level-1" role="region" aria-labelledby="html-title html-subtitle">
       <p id="html-title" aria-hidden="true">A graphical display of data</p>
       <p id="html-subtitle" aria-hidden="true">Each element contains different information</p>
@@ -197,15 +244,14 @@
           <span class="visual-span vspan-path2" role="img" aria-labelledby="htmlPath2 htmlPath1"></span>
           <span id="htmlPath1" aria-hidden="true">Path</span>
           <span id="htmlPath2" aria-hidden="true">1</span>
-        </div><div class="html-button level-3">
+        </div>
+        <div class="html-button level-3">
           <span class="visual-span vspan-text" role="img" aria-labelledby="htmlText2 htmlText1">decorative text</span>
           <span id="htmlText1" aria-hidden="true">Text</span>
           <span id="htmlText2" aria-hidden="true">3</span>
         </div>
       </div>
     </div>
-    <script>
-    </script>
+    <script></script>
   </body>
-
 </html>

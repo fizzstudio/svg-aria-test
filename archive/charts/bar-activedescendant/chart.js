@@ -15,13 +15,13 @@ class Chart {
     this.updateCurrentPoint(0);
 
     // attach events
-    chartEl.addEventListener('click', (event) => this.onDataClick(event.target));
+    chartEl.addEventListener('click', event => this.onDataClick(event.target));
     chartEl.addEventListener('keydown', this.onDataKeyDown.bind(this));
   }
 
   onDataClick(data) {
     this.updateCurrentPoint(this.dataPoints.indexOf(data));
-  
+
     if (this.options.onClick) {
       this.options.onClick(data);
     }
@@ -31,7 +31,7 @@ class Chart {
     let newIndex;
 
     // handle arrow keys
-    switch(event.key) {
+    switch (event.key) {
       case 'ArrowDown':
       case 'ArrowRight':
         newIndex = Math.min(this.dataPoints.length - 1, this.activeId + 1);
