@@ -1,186 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>SVG Bar Chart with Nested Chart</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-    body {
-        font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      body {
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+          'Helvetica Neue', sans-serif;
         line-height: 1.4;
-    }
-    code {
-      font-family: 'Consolas', 'Andale Mono', 'Lucida Sans Typewriter', 'Courier New', 'Roboto Mono', Courier, monospace;
-      font-weight: normal;
-      font-variant-ligatures: none;
-    }
-    svg {
+      }
+      code {
+        font-family: 'Consolas', 'Andale Mono', 'Lucida Sans Typewriter', 'Courier New', 'Roboto Mono', Courier,
+          monospace;
+        font-weight: normal;
+        font-variant-ligatures: none;
+      }
+      svg {
         /*   outline: 1px dotted #f00; */
         max-width: 100vw;
         max-height: 90vh;
-    }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-<h1>SVG Bar Chart with Table Roles</h1>
+  <body>
+    <h1>SVG Bar Chart with Table Roles</h1>
 
-<p>
-This SVG uses table roles to allow navigation through all the data points across two axes. Instead of column headers I use row headers. Within JAWS/Chrome I can navigate on both axes. Firefox/NVDA recognizes there is a table, but does not allow navigation within. I confirmed the accessibility tree in Firefox looks correct, so more testing needed.
-</p>
+    <p>
+      This SVG uses table roles to allow navigation through all the data points across two axes. Instead of column
+      headers I use row headers. Within JAWS/Chrome I can navigate on both axes. Firefox/NVDA recognizes there is a
+      table, but does not allow navigation within. I confirmed the accessibility tree in Firefox looks correct, so more
+      testing needed.
+    </p>
 
-<p>
-Visually the "cells" are different sizes (ok, just Cleric from the Tuesday series) but under the hood each one takes up on cell position. That is why I added an "Empty slot" node at the end of the Thursday series. This allows a user relying on table navigation to still move into the Thursday row from the Tuesday row when at the last entry ("NPC").
-</p>
+    <p>
+      Visually the "cells" are different sizes (ok, just Cleric from the Tuesday series) but under the hood each one
+      takes up on cell position. That is why I added an "Empty slot" node at the end of the Thursday series. This allows
+      a user relying on table navigation to still move into the Thursday row from the Tuesday row when at the last entry
+      ("NPC").
+    </p>
 
-<p>
-This generally satisfies <em>Thing to build #2</em> from the 3 May 2021 call.
-</p>
+    <p>This generally satisfies <em>Thing to build #2</em> from the 3 May 2021 call.</p>
 
-
-<svg viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" role="table" aria-labelledby="h">
-<!--  Origin is uppper left instead of bottom left  -->
-  <style>
-    line {
-      stroke-width: .01rem;
-      stroke: currentColor;
-    }
-    [role="row"] rect {
-      stroke-width: .01rem;
-      stroke: #000;
-    }
-    text {
-      font: inherit;
-      font-size: 4px;
-      /* font-size: inherit; */
-      /* outline: .01vw dotted #0f0;*/
-    }
-    [role="cell"] > text:first-child {
-      position: absolute;
-      overflow: hidden;
-      clip: rect(0 0 0 0); 
-      clip-path: inset(50%);
-      width: 1px;
-      height: 1px;
-      white-space: nowrap; 
-    }
-    .npc {
-      fill: #ccc;
-    }
-    .bard {
-      fill: #ffc;
-    }
-    .cleric {
-      fill: #fcf;
-    }
-    .barbarian {
-      fill: #cff;
-    }
-    .paladin {
-      fill: #cfc;
-    }
-    .fighter {
-      fill: #ccf;
-    }
-    .rogue {
-      fill #fcc;
-    }
-    .druid {
-      fill: #9cc;
-    }
-    .wizard {
-      fill: #c9c;
-    }
-    .ranger {
-      fill: #cc9;
-    }
-  </style>
-<!--  Chart name  -->
-  <text x="50" y="10" id="h" role="caption">Party Class By Gaming Night</text>
-  <g role="row">
-    <text x="40" y="105" text-anchor="middle" role="rowheader">Tuesday</text>
-    <g role="cell">
-      <text>1</text>
-      <rect x="30" y="90" width="20" height="10" role="presentation" class="bard"/>
-      <text x="40" y="97" text-anchor="middle" id="t01t">Bard</text>
-    </g>
-    <g role="cell">
-      <text>2</text>
-      <rect x="30" y="70" width="20" height="20" role="presentation" class="cleric"/>
-      <text x="40" y="80" text-anchor="middle" id="t02t">Cleric</text>
-    </g>
-    <g role="cell">
-      <text>1</text>
-      <rect x="30" y="60" width="20" height="10" role="presentation" class="barbarian"/>
-      <text x="40" y="67" text-anchor="middle" id="t03t">Barbarian</text>
-    </g>
-    <g role="cell">
-      <text>1</text>
-      <rect x="30" y="50" width="20" height="10" role="presentation" class="paladin"/>
-      <text x="40" y="57" text-anchor="middle" id="t04t">Paladin</text>
-    </g>
-    <g role="cell">
-      <text>1</text>
-      <rect x="30" y="40" width="20" height="10" role="presentation" class="fighter"/>
-      <text x="40" y="47" text-anchor="middle" id="t05t">Fighter</text>
-    </g>
-    <g role="cell">
-      <text>1</text>
-      <rect x="30" y="30" width="20" height="10" role="presentation" class="npc"/>
-      <text x="40" y="37" text-anchor="middle" id="t06t">NPC</text>
-    </g>
-  </g>
-  <g role="row">
-    <text x="70" y="105" text-anchor="middle" role="rowheader">Thursday</text>
-    <g role="cell">
-      <text>1</text>
-      <rect x="60" y="90" width="20" height="10" role="presentation" class="druid"/>
-      <text x="70" y="97" text-anchor="middle" id="h01t">Druid</text>
-    </g>
-    <g role="cell">
-      <text>1</text>
-      <rect x="60" y="80" width="20" height="10" role="presentation" class="cleric"/>
-      <text x="70" y="87" text-anchor="middle" id="h02t">Cleric</text>
-    </g>
-    <g role="cell">
-      <text>1</text>
-      <rect x="60" y="70" width="20" height="10" role="presentation" class="wizard"/>
-      <text x="70" y="77" text-anchor="middle" id="h03t">Wizard</text>
-    </g>
-    <g role="cell">
-      <text>1</text>
-      <rect x="60" y="60" width="20" height="10" role="presentation" class="ranger"/>
-      <text x="70" y="67" text-anchor="middle" id="h04t">Ranger</text>
-    </g>
-    <g role="cell">
-      <text>1</text>
-      <rect x="60" y="50" width="20" height="10" role="presentation" class="fighter"/>
-      <text x="70" y="57" text-anchor="middle" id="h05t">Fighter</text>
-    </g>
-    <g role="cell">
-      <text>Empty spot</text>
-    </g>
-  </g>
-  <g aria-hidden="true">
-  <!--  last in structure so it overlaps everything prior    -->
-  <!--  y-axis labels  -->
-    <text x="5" y="50" text-anchor="middle" class="y" transform="rotate(-90 5 50)">Party Member Count</text>
-    <text x="15" y="20" text-anchor="middle">8</text>
-    <text x="15" y="30" text-anchor="middle">7</text>
-    <text x="15" y="40" text-anchor="middle">6</text>
-    <text x="15" y="50" text-anchor="middle">5</text>
-    <text x="15" y="60" text-anchor="middle">4</text>
-    <text x="15" y="70" text-anchor="middle">3</text>
-    <text x="15" y="80" text-anchor="middle">2</text>
-    <text x="15" y="90" text-anchor="middle">1</text>
-    <text x="15" y="100" text-anchor="middle">0</text>
-  <!--  x-axis label  -->
-  <!--  x-axis line -->
-    <line x1="20" y1="100" x2="150" y2="100" />
-  <!--  y-axis line -->
-    <line x1="20" y1="0" x2="20" y2="100" />
-  </g>
-</svg>
-
-</body>
+    <svg viewBox="0 0 150 120" xmlns="http://www.w3.org/2000/svg" role="table" aria-labelledby="h">
+      <!--  Origin is uppper left instead of bottom left  -->
+      <style>
+        line {
+          stroke-width: .01rem;
+          stroke: currentColor;
+        }
+        [role="row"] rect {
+          stroke-width: .01rem;
+          stroke: #000;
+        }
+        text {
+          font: inherit;
+          font-size: 4px;
+          /* font-size: inherit; */
+          /* outline: .01vw dotted #0f0;*/
+        }
+        [role="cell"] > text:first-child {
+          position: absolute;
+          overflow: hidden;
+          clip: rect(0 0 0 0);
+          clip-path: inset(50%);
+          width: 1px;
+          height: 1px;
+          white-space: nowrap;
+        }
+        .npc {
+          fill: #ccc;
+        }
+        .bard {
+          fill: #ffc;
+        }
+        .cleric {
+          fill: #fcf;
+        }
+        .barbarian {
+          fill: #cff;
+        }
+        .paladin {
+          fill: #cfc;
+        }
+        .fighter {
+          fill: #ccf;
+        }
+        .rogue {
+          fill #fcc;
+        }
+        .druid {
+          fill: #9cc;
+        }
+        .wizard {
+          fill: #c9c;
+        }
+        .ranger {
+          fill: #cc9;
+        }
+      </style>
+      <!--  Chart name  -->
+      <text x="50" y="10" id="h" role="caption">Party Class By Gaming Night</text>
+      <g role="row">
+        <text x="40" y="105" text-anchor="middle" role="rowheader">Tuesday</text>
+        <g role="cell">
+          <text>1</text>
+          <rect x="30" y="90" width="20" height="10" role="presentation" class="bard" />
+          <text x="40" y="97" text-anchor="middle" id="t01t">Bard</text>
+        </g>
+        <g role="cell">
+          <text>2</text>
+          <rect x="30" y="70" width="20" height="20" role="presentation" class="cleric" />
+          <text x="40" y="80" text-anchor="middle" id="t02t">Cleric</text>
+        </g>
+        <g role="cell">
+          <text>1</text>
+          <rect x="30" y="60" width="20" height="10" role="presentation" class="barbarian" />
+          <text x="40" y="67" text-anchor="middle" id="t03t">Barbarian</text>
+        </g>
+        <g role="cell">
+          <text>1</text>
+          <rect x="30" y="50" width="20" height="10" role="presentation" class="paladin" />
+          <text x="40" y="57" text-anchor="middle" id="t04t">Paladin</text>
+        </g>
+        <g role="cell">
+          <text>1</text>
+          <rect x="30" y="40" width="20" height="10" role="presentation" class="fighter" />
+          <text x="40" y="47" text-anchor="middle" id="t05t">Fighter</text>
+        </g>
+        <g role="cell">
+          <text>1</text>
+          <rect x="30" y="30" width="20" height="10" role="presentation" class="npc" />
+          <text x="40" y="37" text-anchor="middle" id="t06t">NPC</text>
+        </g>
+      </g>
+      <g role="row">
+        <text x="70" y="105" text-anchor="middle" role="rowheader">Thursday</text>
+        <g role="cell">
+          <text>1</text>
+          <rect x="60" y="90" width="20" height="10" role="presentation" class="druid" />
+          <text x="70" y="97" text-anchor="middle" id="h01t">Druid</text>
+        </g>
+        <g role="cell">
+          <text>1</text>
+          <rect x="60" y="80" width="20" height="10" role="presentation" class="cleric" />
+          <text x="70" y="87" text-anchor="middle" id="h02t">Cleric</text>
+        </g>
+        <g role="cell">
+          <text>1</text>
+          <rect x="60" y="70" width="20" height="10" role="presentation" class="wizard" />
+          <text x="70" y="77" text-anchor="middle" id="h03t">Wizard</text>
+        </g>
+        <g role="cell">
+          <text>1</text>
+          <rect x="60" y="60" width="20" height="10" role="presentation" class="ranger" />
+          <text x="70" y="67" text-anchor="middle" id="h04t">Ranger</text>
+        </g>
+        <g role="cell">
+          <text>1</text>
+          <rect x="60" y="50" width="20" height="10" role="presentation" class="fighter" />
+          <text x="70" y="57" text-anchor="middle" id="h05t">Fighter</text>
+        </g>
+        <g role="cell">
+          <text>Empty spot</text>
+        </g>
+      </g>
+      <g aria-hidden="true">
+        <!--  last in structure so it overlaps everything prior    -->
+        <!--  y-axis labels  -->
+        <text x="5" y="50" text-anchor="middle" class="y" transform="rotate(-90 5 50)">Party Member Count</text>
+        <text x="15" y="20" text-anchor="middle">8</text>
+        <text x="15" y="30" text-anchor="middle">7</text>
+        <text x="15" y="40" text-anchor="middle">6</text>
+        <text x="15" y="50" text-anchor="middle">5</text>
+        <text x="15" y="60" text-anchor="middle">4</text>
+        <text x="15" y="70" text-anchor="middle">3</text>
+        <text x="15" y="80" text-anchor="middle">2</text>
+        <text x="15" y="90" text-anchor="middle">1</text>
+        <text x="15" y="100" text-anchor="middle">0</text>
+        <!--  x-axis label  -->
+        <!--  x-axis line -->
+        <line x1="20" y1="100" x2="150" y2="100" />
+        <!--  y-axis line -->
+        <line x1="20" y1="0" x2="20" y2="100" />
+      </g>
+    </svg>
+  </body>
 </html>

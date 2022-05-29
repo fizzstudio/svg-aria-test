@@ -5,8 +5,8 @@ class Chart {
     this.dataPoints = [...chartEl.querySelectorAll('.data-point')];
 
     // attach events
-    this.dataPoints.forEach((el) => {
-      el.addEventListener('click', (event) => this.onDataClick(event.target));
+    this.dataPoints.forEach(el => {
+      el.addEventListener('click', event => this.onDataClick(event.target));
       el.addEventListener('keydown', this.onDataKeyDown.bind(this));
     });
   }
@@ -29,7 +29,7 @@ class Chart {
     let newIndex;
 
     // handle arrow keys
-    switch(event.key) {
+    switch (event.key) {
       case 'ArrowDown':
       case 'ArrowRight':
         newIndex = Math.min(this.dataPoints.length - 1, dataIndex + 1);

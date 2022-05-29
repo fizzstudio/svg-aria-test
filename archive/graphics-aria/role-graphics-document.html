@@ -1,90 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>SVG elements with ARIA roles</title>
-  <link rel="stylesheet" type="text/css" href="../assets/style.css">
-</head>
-<body>
-  <h1>Graphics roles tests</h1>
-  <p>
-    Ref: <a href="https://www.w3.org/TR/graphics-aria-1.0/">WAI-ARIA Graphics Module: W3C Recommendation 02 October
-      2018</a>
-  </p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SVG elements with ARIA roles</title>
+    <link rel="stylesheet" type="text/css" href="../assets/style.css" />
+  </head>
+  <body>
+    <h1>Graphics roles tests</h1>
+    <p>
+      Ref:
+      <a href="https://www.w3.org/TR/graphics-aria-1.0/"
+        >WAI-ARIA Graphics Module: W3C Recommendation 02 October 2018</a
+      >
+    </p>
 
-  <h2><code>graphics-document</code> Role (plus others)</h2>
+    <h2><code>graphics-document</code> Role (plus others)</h2>
 
-  <h3>Expected behavior</h3>
-  <dl>
-    <dt>Navigation</dt>
+    <h3>Expected behavior</h3>
+    <dl>
+      <dt>Navigation</dt>
       <dd>Focusable SVG elements should be navigable in document order through keyboard control.</dd>
 
-    <dt>Accessible name</dt>
+      <dt>Accessible name</dt>
       <dd>"graphics-document"</dd>
 
-    <dt>Activation</dt>
-      <dd>Focusable SVG elements should be able to be triggered through keyboard click and voice control.</dd>  
+      <dt>Activation</dt>
+      <dd>Focusable SVG elements should be able to be triggered through keyboard click and voice control.</dd>
 
-    <dt>Containment</dt>
-      <dd>Child elements should be exposed.</dd>  
-  </dl>
+      <dt>Containment</dt>
+      <dd>Child elements should be exposed.</dd>
+    </dl>
 
-  <h3>Example</h3>
-  <svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 200 100"
-    role="graphics-document document" xml:lang="en">
-    <title>A simple circuit</title>
-    <desc>A circuit with one source, one switch, and one load</desc>
-    <style type="text/css">
-      svg {
-        /* default styles */
-        fill: none;
-        stroke: black;
-      }
+    <h3>Example</h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="400"
+      height="200"
+      viewBox="0 0 200 100"
+      role="graphics-document document"
+      xml:lang="en"
+    >
+      <title>A simple circuit</title>
+      <desc>A circuit with one source, one switch, and one load</desc>
+      <style type="text/css">
+        svg {
+          /* default styles */
+          fill: none;
+          stroke: black;
+        }
 
-      .wire {
-        stroke-width: 2px;
-      }
+        .wire {
+          stroke-width: 2px;
+        }
 
-      .connection {
-        stroke: none;
-        fill: black;
-      }
+        .connection {
+          stroke: none;
+          fill: black;
+        }
 
-      text {
-        fill: black;
-        stroke: none;
-        font: 15px sans-serif;
-      }
-    </style>
-    <g id="battery-1" role="graphics-symbol img" aria-roledescription="source" aria-label="battery"
-      transform="translate(20,50)">
-      <path d="M-15,-5 h30 M-5,5 h10" />
-    </g>
-    <path id="wire-1" role="graphics-symbol img" aria-label="wire connecting"
-      aria-labelledby="wire-1 battery-1 switch-1" class="wire" d="M20,45 V20 H90" />
-    <g id="switch-1" role="graphics-symbol img" aria-roledescription="switch" aria-label="single-pole switch">
-      <path d="M90,20 L105,30" />
-      <circle class="connection" cx="90" cy="20" r="2" />
-      <circle class="connection" cx="110" cy="20" r="2" />
-    </g>
-    <path id="wire-2" role="graphics-symbol img" aria-label="wire connecting"
-      aria-labelledby="wire-2 switch-1 lightbulb-1" class="wire" d="M110,20 H180 V40" />
-    <g id="lightbulb-1" role="graphics-symbol img" aria-roledescription="load" aria-label="lightbulb"
-      aria-labelledby="lightbulb-1 lightbulb-1-label" transform="translate(180,50)">
-      <text id="lightbulb-1-label" x="-15" dy="0.5ex" text-anchor="end">10W</text>
-      <circle r="10" />
-      <path d="M0,-10 C0,8 5,8 5,0 C5,-8 0,-8 0,10" />
-    </g>
-    <path id="wire-3" role="graphics-symbol img" aria-label="wire connecting"
-      aria-labelledby="wire-3 lightbulb-1 battery-1" class="wire" d="M180,60 V80 H20 V55" />
-  </svg>
+        text {
+          fill: black;
+          stroke: none;
+          font: 15px sans-serif;
+        }
+      </style>
+      <g
+        id="battery-1"
+        role="graphics-symbol img"
+        aria-roledescription="source"
+        aria-label="battery"
+        transform="translate(20,50)"
+      >
+        <path d="M-15,-5 h30 M-5,5 h10" />
+      </g>
+      <path
+        id="wire-1"
+        role="graphics-symbol img"
+        aria-label="wire connecting"
+        aria-labelledby="wire-1 battery-1 switch-1"
+        class="wire"
+        d="M20,45 V20 H90"
+      />
+      <g id="switch-1" role="graphics-symbol img" aria-roledescription="switch" aria-label="single-pole switch">
+        <path d="M90,20 L105,30" />
+        <circle class="connection" cx="90" cy="20" r="2" />
+        <circle class="connection" cx="110" cy="20" r="2" />
+      </g>
+      <path
+        id="wire-2"
+        role="graphics-symbol img"
+        aria-label="wire connecting"
+        aria-labelledby="wire-2 switch-1 lightbulb-1"
+        class="wire"
+        d="M110,20 H180 V40"
+      />
+      <g
+        id="lightbulb-1"
+        role="graphics-symbol img"
+        aria-roledescription="load"
+        aria-label="lightbulb"
+        aria-labelledby="lightbulb-1 lightbulb-1-label"
+        transform="translate(180,50)"
+      >
+        <text id="lightbulb-1-label" x="-15" dy="0.5ex" text-anchor="end">10W</text>
+        <circle r="10" />
+        <path d="M0,-10 C0,8 5,8 5,0 C5,-8 0,-8 0,10" />
+      </g>
+      <path
+        id="wire-3"
+        role="graphics-symbol img"
+        aria-label="wire connecting"
+        aria-labelledby="wire-3 lightbulb-1 battery-1"
+        class="wire"
+        d="M180,60 V80 H20 V55"
+      />
+    </svg>
 
-  <p>
-    <a
-      href="https://www.w3.org/TR/graphics-aria-1.0/#ex-1-example-1-an-svg-diagram-of-an-electrical-circuit-is-a-simple-graphical-document-svg-xmlns-https-www-w3-org-2000-svg-width-400-height-200-viewbox-0-0-200-100-role-graphics-document-document-title-a-simple-circuit-title-desc-a-circuit-with-one-source-one-switch-and-one-load-desc-style-type-text-css-omitted-style-g-id-battery-1-role-graphics-symbol-img-aria-roledescription-source-aria-label-battery-transform-translate-20-50-path-d-m-15-5-h30-m-5-5-h10-g-path-id-wire-1-role-graphics-symbol-img-aria-label-wire-connecting-aria-labelledby-wire-1-battery-1-switch-1-class-wire-d-m20-45-v20-h90-the-switch-more-wires-and-a-light-bulb-svg">Direct
-      link</a>
-  </p>
-
-</body>
-
+    <p>
+      <a
+        href="https://www.w3.org/TR/graphics-aria-1.0/#ex-1-example-1-an-svg-diagram-of-an-electrical-circuit-is-a-simple-graphical-document-svg-xmlns-https-www-w3-org-2000-svg-width-400-height-200-viewbox-0-0-200-100-role-graphics-document-document-title-a-simple-circuit-title-desc-a-circuit-with-one-source-one-switch-and-one-load-desc-style-type-text-css-omitted-style-g-id-battery-1-role-graphics-symbol-img-aria-roledescription-source-aria-label-battery-transform-translate-20-50-path-d-m-15-5-h30-m-5-5-h10-g-path-id-wire-1-role-graphics-symbol-img-aria-label-wire-connecting-aria-labelledby-wire-1-battery-1-switch-1-class-wire-d-m20-45-v20-h90-the-switch-more-wires-and-a-light-bulb-svg"
+        >Direct link</a
+      >
+    </p>
+  </body>
 </html>
