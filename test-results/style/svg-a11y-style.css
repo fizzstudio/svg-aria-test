@@ -4,7 +4,6 @@
   --fail_color: hsl(323, 68%, 83%);
 }
 
-
 body {
   /* scroll-padding-top: 100px; */
   /* margin: 1rem; */
@@ -23,9 +22,9 @@ dt {
   font-weight: bold;
 }
 
-  dt::after {
-    content: ":";
-  }
+dt::after {
+  content: ':';
+}
 
 dd {
   flex-basis: 70%;
@@ -44,13 +43,13 @@ thead > tr {
   color: white;
 }
 
-  thead th {
-    background-color: gray;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0; /* required for stickiness */
-    height: 2.5rem;
-  }
+thead th {
+  background-color: gray;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0; /* required for stickiness */
+  height: 2.5rem;
+}
 
 table td,
 table th {
@@ -93,7 +92,6 @@ span.index {
   color: gray;
   /* padding: 2px; */
 }
-
 
 td.pass,
 td.full {
@@ -148,7 +146,6 @@ a[href^="http"]::after {
   opacity: 0.75;
 }
 
-
 /* notes */
 span.note {
   cursor: help;
@@ -157,7 +154,7 @@ span.note {
   /* Relative to the span elements */
 }
 
-.note::before, 
+.note::before,
 .note::after {
   position: absolute;
   left: 50%;
@@ -176,11 +173,10 @@ span.note {
   z-index: 999;
 }
 
-
 /* --- Creates a triangle shape with borders ---
 https://css-tricks.com/animation-css-triangles-work/ */
 .note::before {
-  content: "";
+  content: '';
   border-style: solid;
   border-width: 1em 0.75em 0 0.75em;
   /* Creates a triangle with the point facing down */
