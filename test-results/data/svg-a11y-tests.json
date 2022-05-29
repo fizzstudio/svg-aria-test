@@ -1,0 +1,754 @@
+{
+  "implementations": [
+    {
+      "jaws-chrome": {
+        "title": "JAWS + Chrome",
+        "desc": "JAWS with Chrome on Windows OS",
+        "type": ""
+      }
+    },
+    {
+      "jaws-firefox": {
+        "title": "JAWS + Firefox",
+        "desc": "JAWS with Firefox on Windows OS",
+        "type": ""
+      }
+    },
+    {
+      "nvda-firefox": {
+        "title": "NVDA + Firefox",
+        "desc": "NVDA with Firefox on Windows OS",
+        "type": ""
+      }
+    },
+    {
+      "voiceover-safari": {
+        "title": "Voiceover + Safari",
+        "desc": "Voiceover with Safari on MacOS",
+        "type": ""
+      }
+    }
+  ],
+  "test-groups": {
+    "basic-svg": {
+      "title": "Basic SVG",
+      "index": "1",
+      "parent_id": null,
+      "url": "tests/basic-svg/"
+    },
+    "aria-labelledby": {
+      "title": "SVG root with `labelled-by`",
+      "index": "1.1",
+      "parent_id": "basic-svg",
+      "url": "tests/basic-svg/aria-labelledby.html"
+    },
+    "wai-aria-graphics-module": {
+      "title": "WAI-ARIA Graphics Module",
+      "index": "1",
+      "parent_id": null
+    },
+    "svg-graphics-document": {
+      "title": "svg-graphics-document",
+      "index": "1.1",
+      "parent_id": "wai-aria-graphics-module",
+      "url": "examples/graphics_document/svg-graphics-document.html"
+    },
+
+    "wai-aria-core": {
+      "title": "WAI-ARIA 1.1 core",
+      "index": "6",
+      "parent_id": null,
+      "url": ""
+    },
+    "role-region": {
+      "title": "`role=region`",
+      "index": "6.1",
+      "parent_id": "wai-aria-core",
+      "url": ""
+    },
+    "role-button": {
+      "title": "`role=button`",
+      "index": "6.2",
+      "parent_id": "wai-aria-core",
+      "url": ""
+    },
+    "role-menu": {
+      "title": "`role=menu`",
+      "index": "6.3",
+      "parent_id": "wai-aria-core",
+      "url": ""
+    }
+  },
+  "test-tasks": {
+    "aria-labelledby-announced": {
+      "title": "SVG root with `aria-labelledby` is announced with label",
+      "index": "5.1.1",
+      "parent_id": "aria-labelledby",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-navigate-role-aria-label": {
+      "title": "able to navigate to each element with a role and aria-label using a keyboard (SVG, g, and all SVG primitives)",
+      "index": "5.1.1",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-visual-focus-position-dimensions": {
+      "title": "visual focus indicator moves to the correct element and has the correct bounding position and dimensions",
+      "index": "5.1.2",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "fail",
+            "notes": "No consensus for support",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "fail",
+            "notes": "No consensus for support",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-visual-focus-persist": {
+      "title": "visual focus indicator remains in view at all times and optionally adjusts the page scroll position",
+      "index": "5.1.3",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "fail",
+            "notes": "Intent to support",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "limited",
+            "notes": "Supported by underlying Leaflet library, but not supported by spec",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-title-subtitle": {
+      "title": "document title and subtitle are read as a single utterance when navigating to the root element",
+      "index": "5.1.4",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-aria-hidden": {
+      "title": "text elements with `aria-hidden=true' are not read independently",
+      "index": "5.1.5",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "limited",
+            "notes": "No additional JavaScript needed, beyond custom element support",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "limited",
+            "notes": "these tools offer options to serve a static image without JavaScript, typically by joining together tiles when the map author passes in a center and zoom level parameter into a specific URL format. However, this is not the default fallback behavior for the embeds when JavaScript is turned off; adding a fallback image must be implemented as a custom feature.",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "limited",
+            "notes": "these tools offer options to serve a static image without JavaScript, typically by joining together tiles when the map author passes in a center and zoom level parameter into a specific URL format. However, this is not the default fallback behavior for the embeds when JavaScript is turned off; adding a fallback image must be implemented as a custom feature.",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-navigate-group-children": {
+      "title": "able to separately navigate to each group, then to its child elements",
+      "index": "5.1.6",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "partial",
+            "notes": "Supports `lang` attribute, but doesn't discuss switching languages",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "fail",
+            "notes": "Intent to implement",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-navigate-element-primitives": {
+      "title": "able to navigate to each primitive element type (rect, circle, path, text)",
+      "index": "5.2.1",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "partial",
+            "notes": "Needs discussion whether markers are a type of feature",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-announce-primitives-labels": {
+      "title": "each primitive is announced, and the referenced text labels are read in the correct sequence",
+      "index": "5.2.2",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-role-announced": {
+      "title": "each element with a role and `aria-label` is announced, with the label content followed by the role",
+      "index": "5.2.3",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "fail",
+            "notes": "Intended to be added",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "limited",
+            "notes": "Available through a popup",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-document-order": {
+      "title": "each element is navigated to and announced in document order",
+      "index": "5.2.4",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-consistent-primitives": {
+      "title": "each primitive is consistent in behavior to each other primitive",
+      "index": "5.3.1",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-svg-consistent-html": {
+      "title": "SVG elements are consistent in behavior to HTML elements",
+      "index": "5.3.2",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "fail",
+            "notes": "Out of scope for standard",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "fail",
+            "notes": "Out of scope for standard",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-graphics-roles": {
+      "title": "each `role' (`graphics-document', `graphics-group', `graphics-symbol') is announced correctly",
+      "index": "5.3.3",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "fail",
+            "notes": "these embeds only support the Web Mercator projection.",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "fail",
+            "notes": "these embeds only support the Web Mercator projection.",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+    "graphics-document-fallback-roles": {
+      "title": "if the `role' is not recognized, the fallback role (`region', `group', `img') is announced instead",
+      "index": "5.3.4",
+      "parent_id": "svg-graphics-document",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "fail",
+            "notes": "Out of scope for client-side standard",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "fail",
+            "notes": "Out of scope for client-side standard",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "fail",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "fail",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+
+    "role-region-navigate-role-aria-label": {
+      "title": "able to navigate to each element with a role and aria-label using a keyboard (SVG, g, and all SVG primitives)",
+      "index": "5.1.1",
+      "parent_id": "role-region",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+
+    "role-button-navigate-role-aria-label": {
+      "title": "able to navigate to each element with a role and aria-label using a keyboard (SVG, g, and all SVG primitives)",
+      "index": "5.1.1",
+      "parent_id": "role-button",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    },
+
+    "role-menu-navigate-role-aria-label": {
+      "title": "able to navigate to each element with a role and aria-label using a keyboard (SVG, g, and all SVG primitives)",
+      "index": "5.1.1",
+      "parent_id": "role-menu",
+      "status": "accepted",
+      "use cases": [{ "title": "", "ucr_id": "", "url": "" }],
+      "implementations": [
+        {
+          "jaws-chrome": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "jaws-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "nvda-firefox": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        },
+        {
+          "voiceover-safari": {
+            "support": "pass",
+            "notes": "",
+            "example_url": ""
+          }
+        }
+      ]
+    }
+
+  }
+}
