@@ -752,9 +752,11 @@
       }
       function findElement(startingPoint, direction) {
         let found = false;
-        const allSiblings = [
-          ...startingPoint.parentElement.parentElement.querySelectorAll('.level-3, .sub-menu:not(.hidden) .level-4')
-        ];
+        const isSVG = startingPoint.ownerSVGElement;
+        const parent = isSVG
+          ? startingPoint.parentElement.parentElement.parentElement
+          : startingPoint.parentElement.parentElement.parentElement.parentElement;
+        const allSiblings = [...parent.querySelectorAll('.level-3, .sub-menu:not(.hidden) .level-4')];
         const i = allSiblings.indexOf(startingPoint);
         return i > -1 ? allSiblings[allSiblings.indexOf(startingPoint) + direction] : undefined;
       }
