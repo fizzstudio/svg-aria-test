@@ -341,44 +341,44 @@
     <p>When elements are selected, content will be rendered below:</p>
     <p id="output" aria-live="polite"></p>
     <script>
-      const interactives = [...document.querySelectorAll(".level-3")];
+      const interactives = [...document.querySelectorAll('.level-3')];
       function registerClick(e) {
-        const target = this
+        const target = this;
         registerData(this);
       }
       function onKeyDown(event) {
-        if (event.key === "Space" || event.key === " ") {
-          event.preventDefault()
-          const target = this
+        if (event.key === 'Space' || event.key === ' ') {
+          event.preventDefault();
+          const target = this;
           registerData(this);
         }
       }
       function registerData(targetEl) {
-        const attr = targetEl.getAttribute("aria-pressed")
-        const targetingHTML = targetEl.tagName === 'span' || targetEl.tagName === 'SPAN'
-        const styleEl = !targetingHTML ? targetEl : targetEl.parentNode
-        let newText ="Records are now closed."
+        const attr = targetEl.getAttribute('aria-pressed');
+        const targetingHTML = targetEl.tagName === 'span' || targetEl.tagName === 'SPAN';
+        const styleEl = !targetingHTML ? targetEl : targetEl.parentNode;
+        let newText = 'Records are now closed.';
         interactives.forEach(el => {
-          el.setAttribute("aria-pressed", "false")
-          const tHTML = el.tagName === 'span' || el.tagName === 'SPAN'
-          const sEl = !tHTML ? el : el.parentNode
-          sEl.classList.remove("pressed")
-        })
-        if (attr === "false") {
-          styleEl.classList.add("pressed")
-          targetEl.setAttribute("aria-pressed", "true")
-          newText = Math.round(Math.random() * 99) + " file fragments have been loaded from our records."
+          el.setAttribute('aria-pressed', 'false');
+          const tHTML = el.tagName === 'span' || el.tagName === 'SPAN';
+          const sEl = !tHTML ? el : el.parentNode;
+          sEl.classList.remove('pressed');
+        });
+        if (attr === 'false') {
+          styleEl.classList.add('pressed');
+          targetEl.setAttribute('aria-pressed', 'true');
+          newText = Math.round(Math.random() * 99) + ' file fragments have been loaded from our records.';
         } else {
-          styleEl.classList.remove("pressed")
-          targetEl.setAttribute("aria-pressed", "false")
+          styleEl.classList.remove('pressed');
+          targetEl.setAttribute('aria-pressed', 'false');
         }
-        document.getElementById(`${targetingHTML ? '' : 'svg-'}output`)[targetingHTML ? 'innerText' : 'textContent'] = newText;
+        document.getElementById(`${targetingHTML ? '' : 'svg-'}output`)[targetingHTML ? 'innerText' : 'textContent'] =
+          newText;
       }
       interactives.forEach(el => {
         el.addEventListener('click', registerClick);
         el.addEventListener('keydown', onKeyDown);
       });
-
     </script>
   </body>
 </html>
