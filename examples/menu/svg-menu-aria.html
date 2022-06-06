@@ -233,6 +233,10 @@
       on an element to select it.
     </p>
     <div>
+      <label for="arrow">Enable Arrow Key Navigation</label>
+      <input type="checkbox" id="arrow" name="arrow" />
+    </div>
+    <div>
       <svg
         viewBox="0 0 150 120"
         xmlns="http://www.w3.org/2000/svg"
@@ -741,14 +745,37 @@
       </div>
     </div>
     <script>
+      let arrowKeysEnabled = false;
       const interactives = [...document.querySelectorAll('.level-3, .level-4')];
       function registerClick(e) {
         engageMenu(this);
+      }
+      function findElement(startingPoint, direction) {
+        let found = false;
+        const allSiblings = [
+          ...startingPoint.parentElement.parentElement.querySelectorAll('.level-3, .sub-menu:not(.hidden) .level-4')
+        ];
+        const i = allSiblings.indexOf(startingPoint);
+        return i > -1 ? allSiblings[allSiblings.indexOf(startingPoint) + direction] : undefined;
+      }
+      function focusElement(target) {
+        target ? ('focus' in target ? target.focus() : target.dispatchEvent(new Event('focus'))) : null;
       }
       function onKeyDown(event) {
         if (event.key === 'Space' || event.key === ' ') {
           event.preventDefault();
           engageMenu(event.target);
+        } else if (arrowKeysEnabled) {
+          const direction =
+            event.key === 'ArrowRight' || event.key === 'ArrowDown'
+              ? 1
+              : event.key === 'ArrowLeft' || event.key === 'ArrowUp'
+              ? -1
+              : 0;
+          if (direction) {
+            event.preventDefault();
+            focusElement(findElement(event.target, direction));
+          }
         }
       }
       function engageMenu(targetEl) {
@@ -800,6 +827,13 @@
         });
         document.querySelectorAll('.level-3').forEach(el => {
           el.addEventListener('focus', hideOtherMenus);
+        });
+
+        var checkbox = document.getElementById('arrow');
+
+        checkbox.addEventListener('change', function () {
+          arrowKeysEnabled = this.checked;
+          console.log('arrowKeysEnabled?', this.checked);
         });
       });
     </script>
