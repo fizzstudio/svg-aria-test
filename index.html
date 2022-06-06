@@ -27,46 +27,210 @@
       <li><a href="https://www.w3.org/TR/graphics-aam-1.0/">Graphics Accessibility API Mappings</a></li>
     </ul>
 
-    <h2>Tests:</h2>
-    <ul>
-      <ul>
-        <li>
-          <a href="./examples/">/examples</a>
-          <ul>
-            <li>
-              <a href="./examples/svg/">/examples/svg</a>
-              <ul>
-                <li>
-                  <a href="./examples/svg/aria-label.html"><code>aria-label</code></a
-                  >: <a href="https://github.com/fizzstudio/svg-aria-test/issues/2">issue #2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="./examples/graphics-aria/">/examples/graphics-aria</a>
-              <ul>
-                <li>
-                  <a href="./examples/graphics-aria/role-graphics-document.html"><code>graphics-document</code> role</a
-                  >: <a href="https://github.com/fizzstudio/svg-aria-test/issues/7">issue #7</a>
-                </li>
-                <li>
-                  <a href="./examples/graphics-aria/role-graphics-object.html"><code>graphics-object</code> role</a>:
-                  <a href="https://github.com/fizzstudio/svg-aria-test/issues/8">issue #8</a>
-                </li>
-                <li>
-                  <a href="./examples/graphics-aria/role-graphics-symbol.html"><code>graphics-symbol</code> role</a>:
-                  <a href="https://github.com/fizzstudio/svg-aria-test/issues/9">issue #9</a>
-                </li>
-                <li>
-                  <a href="./examples/graphics-aria/role-figure-region-img.html"
-                    ><code>figure</code>, <code>region</code>, <code>img</code> roles</a
-                  >: <a href="https://github.com/fizzstudio/svg-aria-test/issues/10">issue #10</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </ul>
+    <h2>Current testing information</h2>
+    <p>
+      <a href="https://github.com/fizzstudio/svg-aria-test/discussions/36"
+        >The overall plan for this repo is at this link.</a
+      >
+      This includes the testing matrix for all ARIA as well as each test environment's ARIA as well as the screen reader
+      + OS + browser matrix.
+    </p>
+    <p>
+      <a href="https://github.com/fizzstudio/svg-aria-test/discussions/49">Testing progress is updated at this link.</a>
+    </p>
+
+    <h2>Test Results:</h2>
+    <ol>
+      <li>
+        <h3>Button</h3>
+        <a href="./examples/button/svg-role-button.html">View the page for the <code>button</code> role test</a>.
+        <a href="https://github.com/fizzstudio/svg-aria-test/issues/23">Main github issue: #23</a>
+        <h4>Work Status:</h4>
+        <p>Environment: <b>Built</b></p>
+        <p>Evaluations: <b>Finished</b></p>
+        <h4>Issues</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/61"
+              >#61: NVDA+Firefox reads all SVG element text</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/62"
+              >#62: NVDA+Firefox cannot select SVG toggleable elements</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/63"
+              >#63: NVDA+Firefox "button" HTML summary of issues</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/64"
+              >#64: NVDA+Firefox "button" focus indicator incorrect binding dimensions</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/65"
+              >#65: VO+Safari does not recognize parent grouped elements</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/66"
+              >#66: VO+Safari does not recognize child grouped elements</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/67"
+              >#67: VO+Safari does not recognize button elements</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/68"
+              >#68: VO+Safari "button" HTML summary of issues</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/69"
+              >#69: VO+Safari "button" focus indicator incorrect binding dimensions</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h3>Graphics-document</h3>
+        <a href="./examples/graphics_document/svg-graphics-document.html"
+          >View the page for the <code>graphics-document</code> test</a
+        >
+        (and sub-type roles) including fallback roles.
+        <a href="https://github.com/fizzstudio/svg-aria-test/issues/24">Main github issue: #24</a>
+        <h4>Work Status:</h4>
+        <p>Environment: <b>Built</b></p>
+        <p>Evaluations: <b>Finished</b></p>
+        <h4>Issues</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/39"
+              >#39: NVDA/Chrome does not read "graphic document" for any element</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/40"
+              >#40: NVDA/Chrome does not recognize parent or child group elements</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/41"
+              >#41: NVDA/Firefox does not read "graphic document" for any element</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/42"
+              >#42: NVDA/Firefox does not recognize parent group elements</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/43"
+              >#43: NVDA/Firefox reading all SVG element text</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/44"
+              >#44: VoiceOver/Safari redundant reading of text</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/45"
+              >#45: VoiceOver/Safari incorrect focus indicator location</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/46"
+              >#46: JAWS/Chrome does not read "graphic document" for any element</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/47"
+              >#47: JAWS/Chrome does not recognize parent or child group elements</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h3>Region</h3>
+        <a href="./examples/region/svg-region.html">View the page for the <code>region</code> test</a>, (includes
+        <code>group</code> and <code>img</code> roles).
+        <a href="https://github.com/fizzstudio/svg-aria-test/issues/25">Main github issue: #25</a>
+        <h4>Work Status:</h4>
+        <p>Environment: <b>Built</b></p>
+        <p>Evaluations: <b>Finished</b></p>
+        <h4>Issues</h4>
+        <ul>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/28"
+              >#28: NVDA/Chrome SVG "region" reading all child element text</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/29"
+              >#29: NVDA/Chrome SVG only recognizes non-hidden text element</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/30"
+              >#30: VoiceOver/Safari incorrect focus indicator location</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/31"
+              >#31: NVDA/Firefox SVG "region" reading all element text</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/32"
+              >#32: NVDA/Chrome HTML "region" summary of issues</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/33"
+              >#33: NVDA/Firefox HTML "region" summary of issues</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/34"
+              >#34: NVDA/Chrome visual focus indicator incorrect locations or no visibility</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/35"
+              >#35: NVDA/Firefox visual focus indicator incorrect locations or no visibility</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/37"
+              >#37: JAWS/Chrome "region" does not read root/parent element</a
+            >
+          </li>
+          <li>
+            <a href="https://github.com/fizzstudio/svg-aria-test/issues/38"
+              >#38: JAWS/Chrome focus indicator not consistently visible on screen</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h3>Menu</h3>
+        <a href="./examples/menu/svg-menu-aria.html">View the page for the <code>menu</code> test,</a> (includes
+        <code>menuitem</code> and <code>menuitemcheckbox</code> roles).
+        <a href="https://github.com/fizzstudio/svg-aria-test/issues/26">Main github issue: #26</a>
+        <h4>Work Status:</h4>
+        <p>Environment: <b>Built</b></p>
+        <p>Evaluations: <em>In-progress</em></p>
+        <h4>Issues</h4>
+        <ul>
+          <li>(pending)</li>
+        </ul>
+      </li>
+    </ol>
   </body>
 </html>
