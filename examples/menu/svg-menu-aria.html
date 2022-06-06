@@ -9,6 +9,7 @@
         font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen-Sans, Ubuntu, Cantarell,
           'Helvetica Neue', sans-serif;
         line-height: 1.4;
+        padding-bottom: 60px;
       }
 
       code {
@@ -43,6 +44,12 @@
         stroke: #000;
       }
 
+      .level-4 {
+        fill: white;
+        stroke-width: 0.01rem;
+        stroke: #000;
+      }
+
       text {
         font: inherit;
         font-size: 4px;
@@ -50,18 +57,12 @@
         /* outline: .01vw dotted #0f0;*/
       }
 
-      .pressed {
-        fill: #000000;
-        background-color: #000000;
-        color: #ffffff;
-      }
-
       :focus {
         outline: 0.45rem solid #f00;
       }
 
       .chart-element:focus {
-        outline: 0.02rem solid #f00;
+        outline: 0.1rem solid #f00;
       }
 
       .centered {
@@ -76,6 +77,11 @@
         background-color: white;
       }
 
+      .sub-menu .vspan-rect {
+        width: 23px;
+        height: 15px;
+      }
+
       .vspan-circle {
         display: inline-block;
         width: 30px;
@@ -83,6 +89,11 @@
         border: 1px solid black;
         background-color: white;
         border-radius: 15px;
+      }
+
+      .sub-menu .vspan-circle {
+        width: 15px;
+        height: 15px;
       }
 
       .vspan-path1 {
@@ -96,6 +107,12 @@
         /* border-right: 35px solid transparent; */
         border-bottom: 30px solid black;
       }
+
+      .sub-menu .vspan-path1 {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 16px solid black;
+      }
       .vspan-path2 {
         display: inline-block;
         position: absolute;
@@ -103,12 +120,42 @@
         width: 0;
         height: 0;
         top: 15px;
-        left: 14px;
+        left: 15px;
         border-left: 13px solid transparent;
         border-right: 13px solid transparent;
 
         /* border-right: 35px solid transparent; */
         border-bottom: 27px solid white;
+      }
+
+      .sub-menu .vspan-path2 {
+        top: 1px;
+        left: 2px;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+
+        /* border-right: 35px solid transparent; */
+        border-bottom: 14px solid white;
+      }
+
+      .hidden {
+        display: none;
+      }
+      .sub-menu:focus {
+        display: block !important;
+      }
+      .level-3,
+      .level-4 {
+        cursor: pointer;
+      }
+      .mini-button {
+        position: relative;
+        margin-top: 8px;
+      }
+      .pressed {
+        fill: #000000;
+        background-color: #000000;
+        color: #ffffff;
       }
     </style>
   </head>
@@ -186,63 +233,272 @@
       on an element to select it.
     </p>
     <div>
+      <label for="arrow">Enable Arrow Key Navigation</label>
+      <input type="checkbox" id="arrow" name="arrow" />
+    </div>
+    <div>
       <svg
         viewBox="0 0 150 120"
         xmlns="http://www.w3.org/2000/svg"
         class="level-1"
-        role="region"
+        role="menu"
         aria-labelledby="title subtitle"
       >
         <text x="50%" y="5" id="title" class="centered" aria-hidden="true">Interactive SVG Interface</text>
-        <text x="50%" y="10" id="subtitle" class="centered" aria-hidden="true">Select One to Load Data Fragments</text>
-        <text x="40" y="45" text-anchor="middle" id="b01v" aria-hidden="true">5</text>
-        <rect
-          x="30"
-          y="50"
-          width="20"
-          height="50"
-          class="chart-element level-3"
-          tabindex="0"
-          role="button"
-          aria-pressed="false"
-          aria-labelledby="b01v b01t"
-        />
-        <text x="40" y="105" text-anchor="middle" id="b01t" aria-hidden="true">Rect</text>
-        <text x="70" y="25" text-anchor="middle" id="b02v" aria-hidden="true">7</text>
-        <circle
-          cx="70"
-          cy="40"
-          r="10"
-          class="chart-element level-3"
-          tabindex="0"
-          role="button"
-          aria-pressed="false"
-          aria-labelledby="b02v b02t"
-        />
-        <text x="70" y="105" text-anchor="middle" id="b02t" aria-hidden="true">Circle</text>
-        <text x="100" y="85" text-anchor="middle" id="b03v" aria-hidden="true">1</text>
-        <path
-          d="M100,88 L110,100 L90,100 Z"
-          class="chart-element level-3"
-          tabindex="0"
-          role="button"
-          aria-pressed="false"
-          aria-labelledby="b03v b03t"
-        />
-        <text x="100" y="105" text-anchor="middle" id="b03t" aria-hidden="true">Path</text>
-        <text x="130" y="65" text-anchor="middle" id="b04v" aria-hidden="true">3</text>
-        <text
-          x="115"
-          y="70"
-          class="chart-element level-3"
-          tabindex="0"
-          role="button"
-          aria-pressed="false"
-          aria-labelledby="b04v b04t"
-        >
-          Decorative Text
-        </text>
-        <text x="130" y="105" text-anchor="middle" id="b04t" aria-hidden="true">Text</text>
+        <text x="50%" y="10" id="subtitle" class="centered" aria-hidden="true">Select Options from the Menu</text>
+        <text x="0" y="0" text-anchor="end" id="menuFor" style="display: none" aria-hidden="true">Menu For</text>
+        <g style="transform: translate(0, -5px)">
+          <text x="20" y="25" text-anchor="end" id="b01t" aria-hidden="true">File</text>
+          <rect
+            x="22"
+            y="18"
+            width="50"
+            height="12"
+            class="chart-element level-3"
+            tabindex="0"
+            role="menuitem"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-labelledby="b01t"
+          />
+          <g role="menu" class="sub-menu hidden menu-File" style="transform: translate(74px, 19px)">
+            <rect fill="white" x="-1" y="-1" width="46" height="26"></rect>
+            <text x="0" y="3" text-anchor="start" id="filee01t" aria-hidden="true">File 1</text>
+            <rect
+              x="13"
+              y="0"
+              width="10"
+              height="4"
+              class="chart-element level-4 parent-is-File"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="filee01t"
+            />
+            <text x="0" y="10" text-anchor="start" id="fileb02t" aria-hidden="true">File 2</text>
+            <circle
+              cx="16"
+              cy="8.5"
+              r="3"
+              class="chart-element level-4 parent-is-File"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="fileb02t"
+            />
+            <text x="0" y="17" text-anchor="start" id="editb03t" aria-hidden="true">File 3</text>
+            <path
+              d="M3.75,0 L7.5,4.5 L0,4.5 Z"
+              class="chart-element level-4 parent-is-File"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="editb03t"
+              style="transform: translate(13px, 13.5px)"
+            />
+            <text x="0" y="24" text-anchor="start" id="editb04t" aria-hidden="true">File 4</text>
+            <text
+              x="26"
+              y="48"
+              class="chart-element level-4 parent-is-File last-child"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="editb04t"
+              text-anchor="start"
+              style="transform: scale(0.5, 0.5)"
+            >
+              Decorative Text
+            </text>
+          </g>
+          <text x="20" y="50" text-anchor="end" id="b02t" aria-hidden="true">Edit</text>
+          <circle
+            cx="30"
+            cy="48"
+            r="8"
+            class="chart-element level-3"
+            tabindex="0"
+            role="menuitem"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-labelledby="b02t"
+          />
+          <g role="menu" class="sub-menu hidden menu-Edit" style="transform: translate(40px, 40px)">
+            <rect fill="white" x="-1" y="-1" width="46" height="26"></rect>
+            <text x="0" y="3" text-anchor="start" id="edite01t" aria-hidden="true">Edit 1</text>
+            <rect
+              x="13"
+              y="0"
+              width="10"
+              height="4"
+              class="chart-element level-4 parent-is-Edit"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="edite01t"
+            />
+            <text x="0" y="10" text-anchor="start" id="editb02t" aria-hidden="true">Edit 2</text>
+            <circle
+              cx="16"
+              cy="8.5"
+              r="3"
+              class="chart-element level-4 parent-is-Edit"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="editb02t"
+            />
+            <text x="0" y="17" text-anchor="start" id="editb03t" aria-hidden="true">Edit 3</text>
+            <path
+              d="M3.75,0 L7.5,4.5 L0,4.5 Z"
+              class="chart-element level-4 parent-is-Edit"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="editb03t"
+              style="transform: translate(13px, 13.5px)"
+            />
+            <text x="0" y="24" text-anchor="start" id="editb04t" aria-hidden="true">Edit 4</text>
+            <text
+              x="26"
+              y="48"
+              class="chart-element level-4 parent-is-Edit last-child"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="editb04t"
+              text-anchor="start"
+              style="transform: scale(0.5, 0.5)"
+            >
+              Decorative Text
+            </text>
+          </g>
+          <text x="20" y="75" text-anchor="end" id="b03t" aria-hidden="true">Options</text>
+          <path
+            d="M10,0 L20,12 L0,12 Z"
+            class="chart-element level-3"
+            tabindex="0"
+            role="menuitem"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-labelledby="b03t"
+            style="transform: translate(22px, 66px)"
+          />
+          <g role="menu" class="sub-menu hidden menu-Options" style="transform: translate(44px, 66px)">
+            <rect fill="white" x="-1" y="-1" width="48" height="26"></rect>
+            <text x="0" y="3" text-anchor="start" id="optione01t" aria-hidden="true">Options 1</text>
+            <rect
+              x="21"
+              y="0"
+              width="10"
+              height="4"
+              class="chart-element level-4 parent-is-Options"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="optione01t"
+            />
+            <text x="0" y="10" text-anchor="start" id="optionb02t" aria-hidden="true">Options 2</text>
+            <circle
+              cx="24"
+              cy="8.5"
+              r="3"
+              class="chart-element level-4 parent-is-Options"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="optionb02t"
+            />
+            <text x="0" y="17" text-anchor="start" id="optionb03t" aria-hidden="true">Options 3</text>
+            <path
+              d="M3.75,0 L7.5,4.5 L0,4.5 Z"
+              class="chart-element level-4 parent-is-Options"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="optionb03t"
+              style="transform: translate(21px, 13.5px)"
+            />
+            <text x="0" y="24" text-anchor="start" id="optionb04t" aria-hidden="true">Options 4</text>
+            <text
+              x="42"
+              y="48"
+              class="chart-element level-4 parent-is-Options last-child"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="optionb04t"
+              text-anchor="start"
+              style="transform: scale(0.5, 0.5)"
+            >
+              Decorative Text
+            </text>
+          </g>
+          <text x="20" y="100" text-anchor="end" id="b04t" aria-hidden="true">Help</text>
+          <text
+            x="22"
+            y="100"
+            class="chart-element level-3"
+            tabindex="0"
+            role="menuitem"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-labelledby="b04t"
+            text-anchor="start"
+          >
+            Decorative Text
+          </text>
+          <g role="menu" class="sub-menu hidden menu-Help" style="transform: translate(58px, 97px)">
+            <rect fill="white" x="-1" y="-1" width="46" height="26"></rect>
+            <text x="0" y="3" text-anchor="start" id="helpe01t" aria-hidden="true">Help 1</text>
+            <rect
+              x="15"
+              y="0"
+              width="10"
+              height="4"
+              class="chart-element level-4 parent-is-Help"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="helpe01t"
+            />
+            <text x="0" y="10" text-anchor="start" id="helpb02t" aria-hidden="true">Help 2</text>
+            <circle
+              cx="18"
+              cy="8.5"
+              r="3"
+              class="chart-element level-4 parent-is-Help"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="helpb02t"
+            />
+            <text x="0" y="17" text-anchor="start" id="helpb03t" aria-hidden="true">Help 3</text>
+            <path
+              d="M3.75,0 L7.5,4.5 L0,4.5 Z"
+              class="chart-element level-4 parent-is-Help"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="helpb03t"
+              style="transform: translate(15px, 13.5px)"
+            />
+            <text x="0" y="24" text-anchor="start" id="helpb04t" aria-hidden="true">Help 4</text>
+            <text
+              x="30"
+              y="48"
+              class="chart-element level-4 parent-is-Help last-child"
+              tabindex="-1"
+              role="presentation"
+              aria-checked="false"
+              aria-labelledby="helpb04t"
+              text-anchor="start"
+              style="transform: scale(0.5, 0.5)"
+            >
+              Decorative Text
+            </text>
+          </g>
+        </g>
         <defs aria-hidden="true">
           <!--   http://iros.github.io/patternfills/sample_svg.html   -->
           <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="1" height="1">
@@ -262,55 +518,324 @@
       The following example while somewhat terrible (for not using radio input/button elements), is given as an example
       of whether or not the SVG will perform the same.
     </p>
-    <ul>
-      <li><a href="#flyoutnavkbfixed">Home</a></li>
-      <li><a href="#flyoutnavkbfixed">Shop</a></li>
-      <li class="has-submenu">
-        <a href="#flyoutnavkbfixed" aria-expanded="false">Space Bears</a>
-        <ul>
-          <li><a href="#flyoutnavkbfixed">Space Bear 6</a></li>
-          <li><a href="#flyoutnavkbfixed">Space Bear 6 Plus</a></li>
-        </ul>
-      </li>
-      <li><a href="#flyoutnavkbfixed">Mars Cars</a></li>
-      <li><a href="#flyoutnavkbfixed">Contact</a></li>
-    </ul>
-    <h2>Output area</h2>
-    <p>When elements are selected, content will be rendered below:</p>
-    <p id="output" aria-live="polite"></p>
+    <div class="level-1" role="menu" aria-labelledby="html-title html-subtitle">
+      <p aria-hidden="true" id="html-title">Interactive HTML Interface</p>
+      <p aria-hidden="true" id="html-subtitle">Select Options from the Menu</p>
+      <div class="html-button">
+        <span
+          class="visual-span vspan-rect level-3"
+          role="menuitem"
+          tabindex="0"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-labelledby="htmlRect1"
+        ></span>
+        <span id="htmlRect1" aria-hidden="true">File</span>
+        <div role="menu" class="sub-menu hidden menu-File">
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-rect level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlFile1"
+            ></span>
+            <span id="htmlFile1" aria-hidden="true">File 1</span>
+          </div>
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-circle level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlFile2"
+            ></span>
+            <span id="htmlFile2" aria-hidden="true">File 2</span>
+          </div>
+          <div class="mini-button">
+            <span class="visual-span vspan-path1" aria-hidden="true"></span>
+            <span
+              class="visual-span vspan-path2 level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlFile3"
+            ></span>
+            <span id="htmlFile3" aria-hidden="true">File 3</span>
+          </div>
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-text level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlFile4"
+              >decorative text</span
+            >
+            <span id="htmlFile4" aria-hidden="true">File 4</span>
+          </div>
+        </div>
+      </div>
+      <div class="html-button">
+        <span
+          class="visual-span vspan-circle level-3"
+          role="menuitem"
+          tabindex="0"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-labelledby="htmlCircle1"
+        ></span>
+        <span id="htmlCircle1" aria-hidden="true">Edit</span>
+        <div role="menu" class="sub-menu hidden menu-Edit">
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-rect level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlEdit1"
+            ></span>
+            <span id="htmlEdit1" aria-hidden="true">Edit 1</span>
+          </div>
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-circle level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlEdit2"
+            ></span>
+            <span id="htmlEdit2" aria-hidden="true">Edit 2</span>
+          </div>
+          <div class="mini-button">
+            <span class="visual-span vspan-path1" aria-hidden="true"></span>
+            <span
+              class="visual-span vspan-path2 level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlEdit3"
+            ></span>
+            <span id="htmlEdit3" aria-hidden="true">Edit 3</span>
+          </div>
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-text level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlEdit4"
+              >decorative text</span
+            >
+            <span id="htmlEdit4" aria-hidden="true">Edit 4</span>
+          </div>
+        </div>
+      </div>
+      <div class="html-button">
+        <span class="visual-span vspan-path1" aria-hidden="true"></span>
+        <span
+          class="visual-span vspan-path2 level-3"
+          role="menuitem"
+          tabindex="0"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-labelledby="htmlPath1"
+        ></span>
+        <span id="htmlPath1" aria-hidden="true">Options</span>
+        <div role="menu" class="sub-menu hidden menu-Options">
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-rect level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlOptions1"
+            ></span>
+            <span id="htmlOptions1" aria-hidden="true">Options 1</span>
+          </div>
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-circle level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlOptions2"
+            ></span>
+            <span id="htmlOptions2" aria-hidden="true">Options 2</span>
+          </div>
+          <div class="mini-button">
+            <span class="visual-span vspan-path1" aria-hidden="true"></span>
+            <span
+              class="visual-span vspan-path2 level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlOptions3"
+            ></span>
+            <span id="htmlOptions3" aria-hidden="true">Options 3</span>
+          </div>
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-text level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlOptions4"
+              >decorative text</span
+            >
+            <span id="htmlOptions4" aria-hidden="true">Options 4</span>
+          </div>
+        </div>
+      </div>
+      <div class="html-button">
+        <span
+          class="visual-span vspan-text level-3"
+          role="menuitem"
+          tabindex="0"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-labelledby="htmlText1"
+          >decorative text</span
+        >
+        <span id="htmlText1" aria-hidden="true">Help</span>
+        <div role="menu" class="sub-menu hidden menu-Help">
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-rect level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlHelp1"
+            ></span>
+            <span id="htmlHelp1" aria-hidden="true">Help 1</span>
+          </div>
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-circle level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlHelp2"
+            ></span>
+            <span id="htmlHelp2" aria-hidden="true">Help 2</span>
+          </div>
+          <div class="mini-button">
+            <span class="visual-span vspan-path1" aria-hidden="true"></span>
+            <span
+              class="visual-span vspan-path2 level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlHelp3"
+            ></span>
+            <span id="htmlHelp3" aria-hidden="true">Help 3</span>
+          </div>
+          <div class="mini-button">
+            <span
+              class="visual-span vspan-text level-4"
+              role="presentation"
+              tabindex="-1"
+              aria-checked="false"
+              aria-labelledby="htmlHelp4"
+              >decorative text</span
+            >
+            <span id="htmlHelp4" aria-hidden="true">Help 4</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <script>
-      // const interactives = [...document.querySelectorAll(".level-3")];
-      // function registerClick(e) {
-      //   const target = this
-      //   registerData(this);
-      // }
-      // function onKeyDown(event) {
-      //   if (event.key === "Space" || event.key === " ") {
-      //     event.preventDefault()
-      //     const target = this
-      //     registerData(this);
-      //   }
-      // }
-      // function registerData(targetEl) {
-      //   const attr = targetEl.getAttribute("aria-pressed")
-      //   if (attr === "false") {
-      //     interactives.forEach(el => {
-      //       el.setAttribute("aria-pressed", "false")
-      //       el.classList.remove("pressed")
-      //     })
-      //     targetEl.classList.add("pressed")
-      //     targetEl.setAttribute("aria-pressed", "true")
-      //     document.getElementById("output").innerText = Math.round(Math.random() * 99) + " file fragments have been loaded from our records."
-      //   } else {
-      //     targetEl.classList.remove("pressed")
-      //     targetEl.setAttribute("aria-pressed", "false")
-      //     document.getElementById("output").innerText = "Records are now closed."
-      //   }
-      // }
-      // interactives.forEach(el => {
-      //   el.addEventListener("click", registerClick);
-      //   el.addEventListener("keydown", onKeyDown);
-      // });
+      let arrowKeysEnabled = false;
+      const interactives = [...document.querySelectorAll('.level-3, .level-4')];
+      function registerClick(e) {
+        engageMenu(this);
+      }
+      function findElement(startingPoint, direction) {
+        let found = false;
+        const allSiblings = [
+          ...startingPoint.parentElement.parentElement.querySelectorAll('.level-3, .sub-menu:not(.hidden) .level-4')
+        ];
+        const i = allSiblings.indexOf(startingPoint);
+        return i > -1 ? allSiblings[allSiblings.indexOf(startingPoint) + direction] : undefined;
+      }
+      function focusElement(target) {
+        target ? ('focus' in target ? target.focus() : target.dispatchEvent(new Event('focus'))) : null;
+      }
+      function onKeyDown(event) {
+        if (event.key === 'Space' || event.key === ' ') {
+          event.preventDefault();
+          engageMenu(event.target);
+        } else if (arrowKeysEnabled) {
+          const direction =
+            event.key === 'ArrowRight' || event.key === 'ArrowDown'
+              ? 1
+              : event.key === 'ArrowLeft' || event.key === 'ArrowUp'
+              ? -1
+              : 0;
+          if (direction) {
+            event.preventDefault();
+            focusElement(findElement(event.target, direction));
+          }
+        }
+      }
+      function engageMenu(targetEl) {
+        // if parent type, open children
+        // if child type, engage aria live section
+        if (targetEl.classList.contains('level-3')) {
+          const menuName = document.getElementById(targetEl.getAttribute('aria-labelledby')).innerHTML;
+          const menu = targetEl.parentElement.querySelector(`.menu-${menuName}`);
+          const isHidden = menu.classList.contains('hidden');
+          menu.classList[isHidden ? 'remove' : 'add']('hidden');
+          targetEl.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+          menu.querySelectorAll(`.level-4`).forEach(e => {
+            e.setAttribute('role', isHidden ? 'menuitemcheckbox' : 'presentation');
+            e.setAttribute('tabindex', isHidden ? '0' : '-1');
+          });
+        } else {
+          const isPressed = targetEl.getAttribute('aria-checked') === 'true';
+          targetEl.setAttribute('aria-checked', '' + !isPressed);
+          targetEl.classList[isPressed ? 'remove' : 'add']('pressed');
+        }
+      }
+      function hideOtherMenus(event) {
+        const isSVG = event.target.nextElementSibling.classList.contains('sub-menu');
+        const ownMenu = isSVG ? event.target.nextElementSibling : event.target.nextElementSibling.nextElementSibling;
+        const parent = isSVG ? event.target.parentElement : event.target.parentElement.parentElement;
+        parent.querySelectorAll('.level-3').forEach(button => {
+          if (!(button.nextElementSibling === ownMenu)) {
+            button.setAttribute('aria-expanded', 'false');
+          }
+        });
+        parent.querySelectorAll('.sub-menu').forEach(menu => {
+          if (!(menu === ownMenu)) {
+            // Array.from(parent.children).forEach(child => {
+            //   // testing
+            // });
+            const menuName = menu.getAttribute('class').substring(menu.getAttribute('class').indexOf('menu-') + 5);
+            menu.classList.add('hidden');
+            menu.querySelectorAll(`.level-4`).forEach(e => {
+              e.setAttribute('role', 'presentation');
+              e.setAttribute('tabindex', '-1');
+            });
+          }
+        });
+      }
+      window.addEventListener('DOMContentLoaded', () => {
+        interactives.forEach(el => {
+          el.addEventListener('click', registerClick);
+          el.addEventListener('keydown', onKeyDown);
+        });
+        document.querySelectorAll('.level-3').forEach(el => {
+          el.addEventListener('focus', hideOtherMenus);
+        });
+
+        var checkbox = document.getElementById('arrow');
+
+        checkbox.addEventListener('change', function () {
+          arrowKeysEnabled = this.checked;
+          console.log('arrowKeysEnabled?', this.checked);
+        });
+      });
     </script>
   </body>
 </html>
